@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" height="1080" id="http://your_domain" version="1.0.0" viewmodes="maximized" width="1920">
+    <tizen:profile name="tv"/>
+    <tizen:content-security-policy>*</tizen:content-security-policy>
+    
+    <tizen:setting pointing-device-support="enable"/>
+    <tizen:metadata key="http://samsung.com/tv/metadata/voice.support" value="false"/>
+    <tizen:metadata key="http://samsung.com/tv/metadata/multiscreen.support" value="true"/>
+    <tizen:metadata key="http://samsung.com/tv/metadata/multitasking.support" value="true"/>
+    <tizen:setting accelerated-2d-canvas="enable"/>
+    
+    <access origin="*" subdomains="true"/>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    
+    <name>nacl</name>
+    <Author>michael.auracher@gmail.com</Author>
+    <description>Moonlight porting try</description>
+    <tizen:application id="LKHNeeyxfp.nacl" package="LKHNeeyxfp" required_version="2.3"/>
+    <metadata key="http://samsung.com/tv/metadata/category" value="Streaming"/>
+    <content src="index.html"/>
+    <icon src="resources/icon/icon128.png"/>
+</widget>

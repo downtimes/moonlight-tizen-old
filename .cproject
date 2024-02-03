@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.945998250">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.945998250" moduleId="org.eclipse.cdt.core.settings" name="Debug-pnacl">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.tizen.nativeapp.SlpMakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.VCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.tizen.nativeapp.SlpGccErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.tizen.nativecore.NativeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="nmf" artifactName="${ProjName}" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="python ../CurrentBin/nacl_clean.py *.po *.mk" description="" id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.945998250" name="Debug-pnacl" parent="org.tizen.web.tv.sec.nacl.builder.toolchain.debug">
+					<folderInfo id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.945998250." name="/" resourcePath="">
+						<toolChain id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.746017931" name="NaCl toolchain" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain">
+							<targetPlatform id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.945998250..1018980399" name=""/>
+							<builder buildPath="${workspace_loc:/nacl}/Debug-pnacl" id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder.1941949564" managedBuildOn="true" name="NaCl builder.Debug-pnacl" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder"/>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.c.721332725" name="NaCl C Compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.c"/>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.cpp.446476304" name="NaCl C++ compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.cpp">
+								<inputType id="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input.1791015186" name="C++ input type" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input"/>
+							</tool>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.linker.c.1511626660" name="NaCl C linker" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.linker.c"/>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.linker.cpp.170478721" name="NaCl C++ linker" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.linker.cpp">
+								<inputType id="org.tizen.web.tv.sec.nacl.builder.toolchain.linker.input.1980969477" name="Linker input" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.linker.input"/>
+							</tool>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.translator.1346906789" name="NaCl Translator" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.translator"/>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.manifest.470816183" name="NaCl manifest generator" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.manifest"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.glibc.206083679">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.glibc.206083679" moduleId="org.eclipse.cdt.core.settings" name="Debug-glibc">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.tizen.nativeapp.SlpMakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.VCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.tizen.nativeapp.SlpGccErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.tizen.nativecore.NativeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="nmf" artifactName="${ProjName}" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="python ../CurrentBin/nacl_clean.py *.po *.mk" description="" id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.glibc.206083679" name="Debug-glibc" parent="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.glibc">
+					<folderInfo id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.glibc.206083679." name="/" resourcePath="">
+						<toolChain id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.glibc.1017757076" name="NaCl toolchain" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.glibc">
+							<targetPlatform id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.glibc.206083679..365877843" name=""/>
+							<builder buildPath="${workspace_loc:/nacl}/Debug-glibc" id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder.glibc.712408155" managedBuildOn="true" name="NaCl glibc Builder.Debug-glibc" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder.glibc"/>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.c.glibc.933753008" name="NaCl glibc C Compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.c.glibc"/>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.cpp.glibc.928836895" name="NaCl glibc C++ Compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.cpp.glibc">
+								<inputType id="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input.glibc.1983678930" name="C++ input type" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input.glibc"/>
+							</tool>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.linker.c.glibc.1384092136" name="NaCl glibc C Linker" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.linker.c.glibc"/>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.linker.cpp.glibc.1886891161" name="NaCl glibc C++ Linker" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.linker.cpp.glibc">
+								<inputType id="org.tizen.web.tv.sec.nacl.builder.toolchain.linker.input.glibc.2120345471" name="Linker input" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.linker.input.glibc"/>
+							</tool>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.manifest.glibc.1553344683" name="NaCl manifest generator" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.manifest.glibc"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.796480056">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.796480056" moduleId="org.eclipse.cdt.core.settings" name="Release-pnacl">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.tizen.nativeapp.SlpMakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.VCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.tizen.nativeapp.SlpGccErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.tizen.nativecore.NativeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="nmf" artifactName="${ProjName}" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release" cleanCommand="python ../CurrentBin/nacl_clean.py *.po *.mk" description="" id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.796480056" name="Release-pnacl" parent="org.tizen.web.tv.sec.nacl.builder.toolchain.release">
+					<folderInfo id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.796480056." name="/" resourcePath="">
+						<toolChain id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.1585130259" name="NaCl toolchain" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain">
+							<targetPlatform id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.796480056..1525041861" name=""/>
+							<builder buildPath="${workspace_loc:/nacl}/Release-pnacl" id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.builder.1825095229" managedBuildOn="true" name="NaCl builder.Release-pnacl" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.builder"/>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.c.1467966416" name="NaCl C Compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.c"/>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.cpp.1754653360" name="NaCl C++ compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.cpp">
+								<inputType id="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input.563958341" name="C++ input type" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input"/>
+							</tool>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.linker.c.1028162607" name="NaCl C linker" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.linker.c"/>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.linker.cpp.1774577285" name="NaCl C++ linker" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.linker.cpp">
+								<inputType id="org.tizen.web.tv.sec.nacl.builder.toolchain.linker.input.221020749" name="Linker input" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.linker.input"/>
+							</tool>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.translator.1417463948" name="NaCl Translator" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.translator"/>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.manifest.546812500" name="NaCl manifest generator" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.manifest"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.glibc.1401324308">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.glibc.1401324308" moduleId="org.eclipse.cdt.core.settings" name="Release-glibc">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.tizen.nativeapp.SlpMakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.VCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.tizen.nativeapp.SlpGccErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.tizen.nativecore.NativeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="nmf" artifactName="${ProjName}" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release" cleanCommand="python ../CurrentBin/nacl_clean.py *.po *.mk" description="" id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.glibc.1401324308" name="Release-glibc" parent="org.tizen.web.tv.sec.nacl.builder.toolchain.release.glibc">
+					<folderInfo id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.glibc.1401324308." name="/" resourcePath="">
+						<toolChain id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.glibc.308661615" name="NaCl toolchain" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.glibc">
+							<targetPlatform id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.glibc.1401324308..1158538574" name=""/>
+							<builder buildPath="${workspace_loc:/nacl}/Release-glibc" id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.builder.glibc.949864526" managedBuildOn="true" name="NaCl glibc Builder.Release-glibc" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.builder.glibc"/>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.c.glibc.356683768" name="NaCl glibc C Compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.c.glibc"/>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.cpp.glibc.1633981034" name="NaCl glibc C++ Compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.cpp.glibc">
+								<inputType id="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input.glibc.2007442953" name="C++ input type" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input.glibc"/>
+							</tool>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.linker.c.glibc.847538309" name="NaCl glibc C Linker" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.linker.c.glibc"/>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.linker.cpp.glibc.1669002196" name="NaCl glibc C++ Linker" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.linker.cpp.glibc">
+								<inputType id="org.tizen.web.tv.sec.nacl.builder.toolchain.linker.input.glibc.1229499339" name="Linker input" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.linker.input.glibc"/>
+							</tool>
+							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.manifest.glibc.1913563103" name="NaCl manifest generator" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.manifest.glibc"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="nacl.org.tizen.web.tv.sec.nacl.builder.toolchain.530644675" name="NaCl project" projectType="org.tizen.web.tv.sec.nacl.builder.toolchain"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+</cproject>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="-1">
+  <script type="text/javascript" src="scripts/project.js"></script>
+  <script type="text/javascript" src="scripts/communication.js"></script>
+  <script type="text/javascript" src="scripts/common.js"></script>  
+  <link rel="stylesheet" href="style/mystyle.css">
+</head>
+
+<body>
+  <h2>NaCl module status: <code id="status">Uninitialized</code></h2>
+
+  <div id="listener">
+    <!-- NaCl module will be attached inside this div element by a function 
+    defined in common.js after "DOMContentLoaded" event occurs. -->
+  </div>
+
+  <!-- Optional LOG area. Remove if not needed along setting uses_logging=false in project.js. -->
+  <div id="logs_area">
+    <h2>NaCl messages: </h2>
+    <textarea id="logs" rows="20" cols="80" readonly></textarea>
+  </div>
+
+</body>
+</html>
