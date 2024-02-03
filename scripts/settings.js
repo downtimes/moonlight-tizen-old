@@ -17,7 +17,3 @@ var nacl_top = -1;
 var nacl_left = -1;
 
 var uses_logging = true;  // If "false" - hides logs area on the HTML page.
-
-function exampleSpecificActionAfterNaclLoad() {
-  /* Fill this function with your code (if needed). */
-}

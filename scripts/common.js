@@ -4,8 +4,6 @@
  */
 
 var logs;
-var kLogPrefix = "LOG:";
-var kErrorPrefix = "ERROR:";
 
 function updateStatus(message) {
   document.getElementById("status").innerHTML = message;
@@ -28,8 +26,7 @@ function startsWith(s, prefix) {
  * @returns true - if this message was a log or error message. 
  */
 function printIfLog(message) {
-  if ((typeof message == "string") && (uses_logging == true) && 
-          (startsWith(message, kLogPrefix) || startsWith(message, kErrorPrefix))) {
+  if ((typeof message == "string") && (uses_logging == true)) {
     logs.value += message;
     logs.scrollTop = logs.scrollHeight;
     return true;
@@ -44,8 +41,8 @@ function handleNaclCrash(event) {
 
 function handleNaclLoad(event) {
   updateStatus("Loaded successfully.");
-  if (exampleSpecificActionAfterNaclLoad && typeof(exampleSpecificActionAfterNaclLoad) == "function") {
-    exampleSpecificActionAfterNaclLoad();
+  if (calledOnLoad && typeof(calledOnLoad) == "function") {
+    calledOnLoad();
   }
 }
 
