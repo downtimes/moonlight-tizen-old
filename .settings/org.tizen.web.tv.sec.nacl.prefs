@@ -1,4 +1,4 @@
-addPrivileges=
+addPrivileges=http\://tizen.org/privilege/filesystem.read,http\://tizen.org/privilege/filesystem.write,http\://tizen.org/privilege/internet,http\://tizen.org/privilege/tv.audio,http\://tizen.org/privilege/tv.inputdevice,http\://tizen.org/privilege/unlimitedstorage
 customPepperPath=false
 eclipse.preferences.version=1
 pepperVersion=pepper_63
