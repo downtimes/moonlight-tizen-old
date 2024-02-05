@@ -22,7 +22,7 @@
 					<folderInfo id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.945998250." name="/" resourcePath="">
 						<toolChain id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.746017931" name="NaCl toolchain" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain">
 							<targetPlatform id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.945998250..1018980399" name=""/>
-							<builder buildPath="${workspace_loc:/nacl}/Debug-pnacl" id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder.1941949564" managedBuildOn="true" name="NaCl builder.Debug-pnacl" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder"/>
+							<builder buildPath="${workspace_loc:/nacl}/Debug-pnacl" id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder.1941949564" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="NaCl builder" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder"/>
 							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.c.721332725" name="NaCl C Compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.c"/>
 							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.cpp.446476304" name="NaCl C++ compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.cpp">
 								<inputType id="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input.1791015186" name="C++ input type" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input"/>
@@ -60,7 +60,7 @@
 					<folderInfo id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.glibc.206083679." name="/" resourcePath="">
 						<toolChain id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.glibc.1017757076" name="NaCl toolchain" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.glibc">
 							<targetPlatform id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.glibc.206083679..365877843" name=""/>
-							<builder buildPath="${workspace_loc:/nacl}/Debug-glibc" id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder.glibc.712408155" managedBuildOn="true" name="NaCl glibc Builder.Debug-glibc" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder.glibc"/>
+							<builder buildPath="${workspace_loc:/nacl}/Debug-glibc" id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder.glibc.712408155" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="NaCl glibc Builder" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder.glibc"/>
 							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.c.glibc.933753008" name="NaCl glibc C Compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.c.glibc"/>
 							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.cpp.glibc.928836895" name="NaCl glibc C++ Compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.cpp.glibc">
 								<inputType id="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input.glibc.1983678930" name="C++ input type" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input.glibc"/>
@@ -97,7 +97,7 @@
 					<folderInfo id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.796480056." name="/" resourcePath="">
 						<toolChain id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.1585130259" name="NaCl toolchain" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain">
 							<targetPlatform id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.796480056..1525041861" name=""/>
-							<builder buildPath="${workspace_loc:/nacl}/Release-pnacl" id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.builder.1825095229" managedBuildOn="true" name="NaCl builder.Release-pnacl" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.builder"/>
+							<builder buildPath="${workspace_loc:/nacl}/Release-pnacl" id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.builder.1825095229" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="NaCl builder" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.builder"/>
 							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.c.1467966416" name="NaCl C Compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.c"/>
 							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.cpp.1754653360" name="NaCl C++ compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.cpp">
 								<inputType id="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input.563958341" name="C++ input type" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input"/>
@@ -135,7 +135,7 @@
 					<folderInfo id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.glibc.1401324308." name="/" resourcePath="">
 						<toolChain id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.glibc.308661615" name="NaCl toolchain" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.glibc">
 							<targetPlatform id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.glibc.1401324308..1158538574" name=""/>
-							<builder buildPath="${workspace_loc:/nacl}/Release-glibc" id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.builder.glibc.949864526" managedBuildOn="true" name="NaCl glibc Builder.Release-glibc" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.builder.glibc"/>
+							<builder buildPath="${workspace_loc:/nacl}/Release-glibc" id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.builder.glibc.949864526" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="NaCl glibc Builder" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.builder.glibc"/>
 							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.c.glibc.356683768" name="NaCl glibc C Compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.c.glibc"/>
 							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.cpp.glibc.1633981034" name="NaCl glibc C++ Compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.release.toolchain.compiler.cpp.glibc">
 								<inputType id="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input.glibc.2007442953" name="C++ input type" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input.glibc"/>
@@ -160,4 +160,5 @@
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="refreshScope"/>
 </cproject>

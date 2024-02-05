@@ -9,6 +9,7 @@
 // all other definitions in the anonymous function are inaccessible to external
 // code.
 var common = (function () {
+  var nacl_module;
   /**
   * Create the Native Client <embed> element as a child of the DOM element
   * named "listener".
@@ -22,6 +23,8 @@ var common = (function () {
     moduleEl.setAttribute('name', 'nacl_module');
     moduleEl.setAttribute('id', 'nacl_module');
     moduleEl.setAttribute('path', path);
+    moduleEl.setAttribute('width', '800px');
+    moduleEl.setAttribute('height', '480px');
     moduleEl.setAttribute('src', path + '/' + name + '.nmf');
 
     moduleEl.setAttribute('type', 'application/x-nacl');
@@ -37,6 +40,7 @@ var common = (function () {
     // this is needed if the module is being loaded on a Chrome App's
     // background page (see crbug.com/350445).
     moduleEl.offsetTop;
+    nacl_module = moduleEl;
   }
 
   /**
@@ -185,6 +189,7 @@ var common = (function () {
 
   // The symbols to export.
   return {
+    nacl_module: nacl_module,
     attachDefaultListeners: attachDefaultListeners,
     domContentLoaded: domContentLoaded,
     updateStatus: updateStatus
@@ -194,5 +199,5 @@ var common = (function () {
 // Listen for the DOM content to be loaded. This event is fired when parsing of
 // the page's document has finished.
 document.addEventListener('DOMContentLoaded', function () {
-  common.domContentLoaded("moonlight-tizen-old.nmf", "CurrentBin");
+  common.domContentLoaded("MoonlightTizenOld", "CurrentBin");
 });

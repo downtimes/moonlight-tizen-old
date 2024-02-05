@@ -7,8 +7,6 @@
 #include "ppapi/cpp/var_array_buffer.h"
 #include "ppapi/cpp/var_dictionary.h"
 
-const char *kEcho = "Echo from NaCl: ";
-
 /**
  * This is a base of your NaCl application. There is one instance of
  * <code>pp::Instance</code> class object per <embed> element on a web page.
@@ -98,7 +96,7 @@ class NaClInstance : public pp::Instance {
     // automatically
     //
     if (message.is_string()) {
-      PostMessage(kEcho + message.AsString() + "\n");
+      PostMessage("TransientMsg: " + message.AsString() + "\n");
       return;
     }
 

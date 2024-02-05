@@ -1,7 +1,7 @@
 function runningOnChrome() {
   try {
       if (chrome) {
-          return false;
+          return true;
       }
   } catch (e) {}
 

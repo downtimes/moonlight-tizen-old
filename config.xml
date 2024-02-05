@@ -1,28 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" 
-    id="http://github.com/downtimes" version="1.0.0" viewmodes="fullscreen">
-    <tizen:profile name="tv" />
-    <tizen:content-security-policy>*</tizen:content-security-policy>
-    
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://github.com/downtimes" version="1.0.0" viewmodes="fullscreen">
+    <tizen:profile name="tv-samsung" />  
     <tizen:setting pointing-device-support="enable" />
-    <tizen:metadata key="http://samsung.com/tv/metadata/voice.support" value="false" />
-    <tizen:metadata key="http://samsung.com/tv/metadata/multiscreen.support" value="true" />
-    <tizen:metadata key="http://samsung.com/tv/metadata/multitasking.support" value="true" />
     <tizen:setting accelerated-2d-canvas="enable" />
-
-    <tizen:privilege name="http://tizen.org/privilege/unlimitedstorage" />
-    <tizen:privilege name="http://tizen.org/privilege/filesystem.write" />
-    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice" />
-    <tizen:privilege name="http://tizen.org/privilege/filesystem.read" />
-    <tizen:privilege name="http://tizen.org/privilege/internet" />
-    <tizen:privilege name="http://tizen.org/privilege/tv.audio" />
-    
-    <access origin="*" subdomains="true" />
+       
     <feature name="http://tizen.org/feature/screen.size.all" />
-    
-    <name>Moonlight Tizen Old</name>
+    <name>MoonlightTizenOld</name>
     <description>Attempted Moonlight port for old Samsung tvs</description>
-    <tizen:application id="LKHNeeyxfp.nacl" package="LKHNeeyxfp" required_version="2.3" />
+    <tizen:application id="LKHNeeyxfp.MoonlightTizenOld" package="LKHNeeyxfp" required_version="3.0" />
     <content src="index.html" />
-    <icon src="./icons/icon128.png" />
+    <icon src="icons/icon128.png" />
+
+	<tizen:privilege name="http://tizen.org/privilege/filesystem.write" />
+	<tizen:privilege name="http://tizen.org/privilege/filesystem.read" />
+	<tizen:privilege name="http://tizen.org/privilege/internet" />
+	<tizen:privilege name="http://tizen.org/privilege/tv.audio" />
+	<tizen:privilege name="http://tizen.org/privilege/tv.inputdevice" />
+	<tizen:privilege name="http://tizen.org/privilege/unlimitedstorage" />
 </widget>

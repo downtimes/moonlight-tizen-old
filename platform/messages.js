@@ -1,25 +1,5 @@
 /* eslint-disable */
 
-const SyncFunctions = {
-  // no parameters
-  'makeCert': (...args) => Module.makeCert(...args),
-  // cert, privateKey, myUniqueid
-  'httpInit': (...args) => Module.httpInit(...args),
-  // host, width height fps bitrate rikey rikeyid appversion gfeversion
-  'startRequest': (...args) => Module.startStream(...args),
-  // no parameters
-  'stopRequest': (...args) => Module.stopStream(...args),
-};
-
-const AsyncFunctions = {
-  // url, ppk, binaryResponse
-  'openUrl': (...args) => Module.openUrl(...args),
-  // no parameters
-  'STUN': (...args) => Module.STUN(...args),
-  // serverMajorVersion, address, randomNumber
-  'pair': (...args) => Module.pair(...args),
-};
-
 var callbacks = {}
 var callbacks_ids = 1;
 
@@ -30,32 +10,20 @@ var callbacks_ids = 1;
  * @param  {(String|Array)} params An array of options or a signle string
  * @return {void}        The NaCl module calls back trought the handleMessage method
  */
-var sendMessage = function(method, params) {
-  if (SyncFunctions[method]) {
-    return new Promise(function(resolve, reject) {
-      const ret = SyncFunctions[method](...params);
-      if (ret.type === "resolve") {
-        resolve(ret.ret);
-      } else {
-        reject(ret.ret);
-      }
-    });
-  } else {
-    return new Promise(function(resolve, reject) {
-      const id = callbacks_ids++;
-      callbacks[id] = {
-        'resolve': resolve,
-        'reject': reject
-      };
+var sendMessage = function (method, params) {
+  return new Promise(function (resolve, reject) {
+    var id = callbacks_ids++;
+    callbacks[id] = {
+      'resolve': resolve,
+      'reject': reject
+    };
 
-      AsyncFunctions[method](id, ...params);
+    common.nacl_module.postMessage({
+      'callbackId': id,
+      'method': method,
+      'params': params
     });
-  }
-}
-
-var handlePromiseMessage = function(callbackId, type, msg) {
-  callbacks[callbackId][type](msg);
-  delete callbacks[callbackId];
+  });
 }
 
 /**
@@ -65,44 +33,80 @@ var handlePromiseMessage = function(callbackId, type, msg) {
  * @return {void}
  */
 function handleMessage(msg) {
-  console.log('%c[messages.js, handleMessage]', 'color:gray;', 'Message data: ', msg);
-  if (msg.indexOf('streamTerminated: ') === 0) { // if it's a recognized event, notify the appropriate function
-    // Release our keep awake request
-    if (runningOnChrome()) {
-      chrome.power.releaseKeepAwake();
-    }
+  if (msg.data.callbackId && callbacks[msg.data.callbackId]) { // if it's a callback, treat it as such
+    callbacks[msg.data.callbackId][msg.data.type](msg.data.ret);
+    delete callbacks[msg.data.callbackId]
+  } else { // else, it's just info, or an event
+    console.log('%c[messages.js, handleMessage]', 'color:gray;', 'Message data: ', msg.data)
+    if (msg.data.indexOf('streamTerminated: ') === 0) { // if it's a recognized event, notify the appropriate function
+      // Release our keep awake request
+      if (runningOnChrome()) {
+        chrome.power.releaseKeepAwake();
+      }
 
-    // Show a termination snackbar message if the termination was unexpected
-    var errorCode = parseInt(msg.replace('streamTerminated: ', ''));
-    if (errorCode !== 0) {
-      snackbarLogLong("Connection terminated");
-    }
+      // Show a termination snackbar message if the termination was unexpected
+      var errorCode = parseInt(msg.data.replace('streamTerminated: ', ''));
+      switch (errorCode) {
+        case 0: // ML_ERROR_GRACEFUL_TERMINATION
+          break;
 
-    api.refreshServerInfo().then(function(ret) {
-      // Return to app list with new currentgame
-      showApps(api);
-    }, function() {
-      // Return to app list anyway
-      showApps(api);
-    });
-  } else if (msg === 'Connection Established') {
-    $('#loadingSpinner').css('display', 'none');
-    $('body').css('backgroundColor', 'transparent');
-    $("#nacl_module").css("display", "");
-    $("#nacl_module").focus();
+        case -100: // ML_ERROR_NO_VIDEO_TRAFFIC
+          snackbarLogLong("No video received from host. Check the host PC's firewall and port forwarding rules.");
+          break;
 
-    // Keep the display awake while streaming
-    if (runningOnChrome()) {
-      chrome.power.requestKeepAwake("display");
+        case -101: // ML_ERROR_NO_VIDEO_FRAME
+          snackbarLogLong("Your network connection isn't performing well. Reduce your video bitrate setting or try a faster connection.");
+          break;
+
+        default:
+          snackbarLogLong("Connection terminated");
+          break;
+      }
+
+      api.refreshServerInfo().then(function (ret) {
+        // Return to app list with new currentgame
+        showApps(api);
+      }, function () {
+        // Return to app list anyway
+        showApps(api);
+      });
+    } else if (msg.data === 'Connection Established') {
+      $('#loadingSpinner').css('display', 'none');
+      $('body').css('backgroundColor', 'black');
+      $("#nacl_module").css("display", "");
+      $("#nacl_module").focus();
+
+      // Keep the display awake while streaming
+      if (runningOnChrome()) {
+        chrome.power.requestKeepAwake("display");
+      }
+    } else if (msg.data.indexOf('ProgressMsg: ') === 0) {
+      $('#loadingMessage').text(msg.data.replace('ProgressMsg: ', ''));
+    } else if (msg.data.indexOf('TransientMsg: ') === 0) {
+      snackbarLog(msg.data.replace('TransientMsg: ', ''));
+    } else if (msg.data.indexOf('DialogMsg: ') === 0) {
+      // FIXME: Really use a dialog
+      snackbarLogLong(msg.data.replace('DialogMsg: ', ''));
+    } else if (msg.data === 'displayVideo') {
+      // Show the video stream now
+      $("#nacl_module")[0].style.opacity = 1.0;
+      $("#listener").addClass("fullscreen");
+    } else if (msg.data.indexOf('controllerRumble: ') === 0) {
+      const eventData = msg.data.split(' ')[1].split(',');
+      const gamepadIdx = parseInt(eventData[0]);
+      const weakMagnitude = parseFloat(eventData[1]);
+      const strongMagnitude = parseFloat(eventData[2]);
+      console.log("Playing rumble on gamepad " + gamepadIdx + " with weakMagnitude " + weakMagnitude + " and strongMagnitude " + strongMagnitude);
+
+      // We may not actually have a gamepad at this index.
+      // Even if we do have a gamepad, it may not have a vibrationActuator associated with it.
+      navigator.getGamepads()[gamepadIdx]?.vibrationActuator?.playEffect('dual-rumble', {
+        startDelay: 0,
+        duration: 5000, // Moonlight should be sending another rumble event when stopping.
+        weakMagnitude: weakMagnitude,
+        strongMagnitude: strongMagnitude,
+      });
     }
-  } else if (msg.indexOf('ProgressMsg: ') === 0) {
-    $('#loadingMessage').text(msg.replace('ProgressMsg: ', ''));
-  } else if (msg.indexOf('TransientMsg: ') === 0) {
-    snackbarLog(msg.replace('TransientMsg: ', ''));
-  } else if (msg.indexOf('DialogMsg: ') === 0) {
-    // FIXME: Really use a dialog
-    snackbarLogLong(msg.replace('DialogMsg: ', ''));
-  } else if (msg === 'displayVideo') {
-    $("#listener").addClass("fullscreen");
   }
+
 }
