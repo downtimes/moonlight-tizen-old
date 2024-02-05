@@ -1,5 +1,5 @@
-#include <cstring>
 #include <cstdint>
+#include <cstring>
 
 #include "ppapi/cpp/instance.h"
 #include "ppapi/cpp/module.h"
@@ -90,68 +90,16 @@ class NaClInstance : public pp::Instance {
    * for more details.
    */
   virtual void HandleMessage(const pp::Var &message) {
-    // TODO: Add your communication NaCl<->JavaScript here:
-    // PostMessage("Message");
-    // You can also use Message Template Generator to generate functions
-    // automatically
-    //
-    if (message.is_string()) {
-      PostMessage("TransientMsg: " + message.AsString() + "\n");
-      return;
-    }
+    // Ignore the message if it is not a string.
+    if (!message.is_dictionary()) return;
 
-    const int msgIdNumber = getMessageId(message);
-    if (msgIdNumber < 0) {
-      return;
-    }
-    // Passes the message to a proper handler function.
-    switch (msgIdNumber) {
-      case 0: {
-        pp::VarDictionary dict(message);
-        break;
-      }
-      case 1: {
-        pp::VarDictionary dict(message);
-        break;
-      }
-      case 2: {
-        pp::VarDictionary dict(message);
-        break;
-      }
-      case 3: {
-        pp::VarDictionary dict(message);
-        break;
-      }
-      case 4: {
-        pp::VarDictionary dict(message);
-        break;
-      }
-      case 5: {
-        pp::VarDictionary dict(message);
-        {
-          int error = 0;
-          uint32_t len = 0;
-          getArrayBufferFromDictionary(dict, "buffer", &error, &len);
-        }
-        break;
-      }
-      case 6: {
-        pp::VarDictionary dict(message);
-        break;
-      }
-      case 7: {
-        break;
-      }
-      case 8: {
-        break;
-      }
-      case 9: {
-        pp::VarDictionary dict(message);
-        break;
-      }
-      default:
-        break;
-    }
+    pp::VarDictionary msg(message);
+    int32_t callbackId = msg.Get("callbackId").AsInt();
+    std::string method = msg.Get("method").AsString();
+    pp::VarArray params(msg.Get("params"));
+
+    pp::Var response("Unhandled message received: " + method);
+    PostMessage(response);
   }
 
   /**

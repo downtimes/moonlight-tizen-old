@@ -1262,7 +1262,6 @@ function loadUserDataCb() {
 
 function loadHTTPCerts() {
   if (runningOnChrome()) {
-    common.updateStatus("Loading Certs");
     loadHTTPCertsCb();
   } else {
     openIndexDB(loadHTTPCertsCb);
@@ -1286,6 +1285,7 @@ function loadHTTPCertsCb() {
       }*/
 
       if (!pairingCert) { // we couldn't load a cert. Make one.
+        common.updateStatus("CreatingCert");
         console.warn('%c[index.js, moduleDidLoad]', 'color: green;', 'Failed to load local cert. Generating new one');
         sendMessage('makeCert', []).then(function (cert) {
           storeData('cert', cert, null);

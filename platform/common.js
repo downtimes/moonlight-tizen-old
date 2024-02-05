@@ -100,6 +100,7 @@ var common = (function () {
     if (typeof window.handleMessage !== 'undefined') {
       window.handleMessage(message_event);
     } else {
+      updateStatus(message_event.data)
       console.log('Unhandled message: ' + message_event.data);
     }
   }
