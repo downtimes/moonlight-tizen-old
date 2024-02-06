@@ -155,10 +155,27 @@
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="nacl.org.tizen.web.tv.sec.nacl.builder.toolchain.530644675" name="NaCl project" projectType="org.tizen.web.tv.sec.nacl.builder.toolchain"/>
 	</storageModule>
-	<storageModule moduleId="scannerConfiguration">
-		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
-	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Release-pnacl">
+			<resource resourceType="PROJECT" workspacePath="/MoonlightTizenOld"/>
+		</configuration>
+		<configuration configurationName="Debug-glibc">
+			<resource resourceType="PROJECT" workspacePath="/MoonlightTizenOld"/>
+		</configuration>
+		<configuration configurationName="Release-glibc">
+			<resource resourceType="PROJECT" workspacePath="/MoonlightTizenOld"/>
+		</configuration>
+		<configuration configurationName="Debug-pnacl">
+			<resource resourceType="PROJECT" workspacePath="/MoonlightTizenOld"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.945998250;org.tizen.web.tv.sec.nacl.builder.toolchain.debug.945998250.;org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.cpp.446476304;org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input.1791015186">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile"/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>
