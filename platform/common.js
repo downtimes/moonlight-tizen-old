@@ -235,5 +235,5 @@ var common = (function () {
 // Listen for the DOM content to be loaded. This event is fired when parsing of
 // the page's document has finished.
 document.addEventListener('DOMContentLoaded', function () {
-  common.domContentLoaded("MoonlightTizenOld", "CurrentBin");
+  common.domContentLoaded("MoonlightTizenOld", "pnacl/Release");
 });

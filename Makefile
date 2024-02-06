@@ -53,3 +53,11 @@ $(eval $(call LINK_RULE,$(TARGET),$(SOURCES),$(LIBS),$(DEPS)))
 endif
 
 $(eval $(call NMF_RULE,$(TARGET),))
+
+#use $(OUTDIR) which is defined by common.mk and make extra folder afterwards in which we copy
+#the relevant data to have smaller footprint compared to current >100Mb
+package:
+	@echo 'Invoking: NaCl Translator'
+	$(NACL_SDK_ROOT)/toolchain/linux_pnacl/bin/pnacl-translate --allow-llvm-bitcode-input -arch armv7 -o pnacl/Release/MoonlightTizenOld_armv7.nexe pnacl/Release/MoonlightTizenOld.pexe
+	python "$(NACL_SDK_ROOT)/tools/create_nmf.py" -s ./  -o "pnacl/Release/MoonlightTizenOld.nmf" "pnacl/Release/MoonlightTizenOld_armv7.nexe"
+	@echo 'Finished translation'
