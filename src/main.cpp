@@ -168,7 +168,13 @@ void MoonlightInstance::HandleMessage(const pp::Var& var_message) {
     std::string method = msg.Get("method").AsString();
     pp::VarArray params(msg.Get("params"));
     
-    if (strcmp(method.c_str(), "httpInit") == 0) {
+    if (strcmp(method.c_str(), MSG_START_REQUEST) == 0) {
+        HandleStartStream(callbackId, params);
+    } else if (strcmp(method.c_str(), MSG_STOP_REQUEST) == 0) {
+        HandleStopStream(callbackId, params);
+    } else if (strcmp(method.c_str(), MSG_OPENURL) == 0) {
+        HandleOpenURL(callbackId, params);
+    } else if (strcmp(method.c_str(), "httpInit") == 0) {
         NvHTTPInit(callbackId, params);
     } else if (strcmp(method.c_str(), "makeCert") == 0) {
         MakeCert(callbackId, params);
