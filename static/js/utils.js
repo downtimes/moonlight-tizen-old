@@ -91,7 +91,6 @@ String.prototype.toHex = function() {
 }
 
 function NvHTTP(address, clientUid, userEnteredAddress = '') {
-  console.log('%c[utils.js, NvHTTP Object]', 'color: gray;', this);
   this.address = address;
   this.ppkstr = null;
   this.paired = false;
@@ -114,6 +113,7 @@ function NvHTTP(address, clientUid, userEnteredAddress = '') {
   this._pollCompletionCallbacks = [];
 
   _self = this;
+  console.log('%c[utils.js, NvHTTP Object]', 'color: gray;', this);
 };
 
 function _arrayBufferToBase64(buffer) {

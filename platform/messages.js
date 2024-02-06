@@ -35,11 +35,9 @@ var sendMessage = function (method, params) {
  */
 function handleMessage(msg) {
   if (msg.data.callbackId && callbacks[msg.data.callbackId]) { // if it's a callback, treat it as such
-    console.log("callback called")
     callbacks[msg.data.callbackId][msg.data.type](msg.data.ret);
     delete callbacks[msg.data.callbackId]
   } else { // else, it's just info, or an event
-    console.log("Other message" + msg.data);
     console.log('%c[messages.js, handleMessage]', 'color:gray;', 'Message data: ', msg.data)
     if (msg.data.indexOf('streamTerminated: ') === 0) { // if it's a recognized event, notify the appropriate function
       // Release our keep awake request

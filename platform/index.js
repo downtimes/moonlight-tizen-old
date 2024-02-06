@@ -365,6 +365,7 @@ function addHost() {
       }
     }.bind(this),
       function (failure) {
+        console.error("Failure code: ", failure);
         snackbarLog('Failed to connect to ' + _nvhttpHost.hostname + '! Ensure that GameStream is enabled in GeForce Experience.');
       }.bind(this));
   });
