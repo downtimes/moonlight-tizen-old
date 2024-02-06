@@ -29,8 +29,8 @@ e70SYAaAaA==</DigestValue>
 </Reference>
 <Reference URI="config.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
-<DigestValue>gbP5zSnoWanYH4zokKQmNKqFkBSq6uqY9pPX5xrHZqSCVWbeH+2uZNltl9SVch/MY2l/FJHIU4aF
-y4GxgGbXbg==</DigestValue>
+<DigestValue>wot942btqvkjCVOKXQiw4eloZWf5zmPGt9c9o22nFllWbOULfJcvnGu+ejfqw+0EsbstuHDNe/ks
+5eUt2+efZg==</DigestValue>
 </Reference>
 <Reference URI="icons%2Ficon.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
@@ -64,8 +64,8 @@ FYi/2g2JAg==</DigestValue>
 </Reference>
 <Reference URI="platform%2Fcommon.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
-<DigestValue>hACcTgM2pKWitlns6VbGJl4u8XbPjJBqgV2Ij0BP6xHog4yXOMQOgSkF6yxyOVmDVSc75TNayAx/
-0ag10NIaSA==</DigestValue>
+<DigestValue>5XnWCFwxtyO8DbAGL2H80sZ3dWVPRVCsaBCqKoYueT2/jZVCQoeLe762Rak8FhPSlyzOzopVvxAS
+r0lpx74pJg==</DigestValue>
 </Reference>
 <Reference URI="platform%2Fgamepad.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
@@ -74,13 +74,13 @@ CtNuLne5IQ==</DigestValue>
 </Reference>
 <Reference URI="platform%2Findex.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
-<DigestValue>EEwcjU5cL3Z/9DF8H48UH1fPawznuAUJnRn1EaH9k5wEYRunafGhVwmsg53xiJ7/MdMtNhOEfml1
-hoNGMrJFaA==</DigestValue>
+<DigestValue>Yn9323oxsZoLITteeivfcPRVdSuuvUaN1Ab8rIHHZnQsf9J5NxDqWKOrxC3H38iXN6YXgzHsvy3n
+9yi7+95CGQ==</DigestValue>
 </Reference>
 <Reference URI="platform%2Fmessages.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
-<DigestValue>iczzWjWPtzB16ABOxx/0UC+aAADVrZU6zQFkjLVMnSIyjMODF9WbRr0WzmMrubBQr0Nn2aqG8p8r
-j+eibU002Q==</DigestValue>
+<DigestValue>eMG25YNnhYPf7EPLTsJXolPABA8Pbis6vpFTDyP+2P/HwFZR/ib+LZc3FgbquuuutiMPuk4mKn9l
+DQ6uPpRTWw==</DigestValue>
 </Reference>
 <Reference URI="platform%2Fnavigation.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
@@ -114,8 +114,8 @@ HjbvOEm6lg==</DigestValue>
 </Reference>
 <Reference URI="static%2Fcss%2Fstyle.css">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
-<DigestValue>bzpzfq8d8sSE1/M240I04Mk4Wz+LA70VKDCw+U766AxmquuEiTqewGAzuNjX1fwgMQ3iVibXfzPR
-tqEv3VzyyA==</DigestValue>
+<DigestValue>Fsf2Y7qJOozNYmevtZ9DAkLibavz2QSfLXfdLflmrqkXdwXTprARmDyPa22d4Bsk8p/huB2qSsJO
+dAF42KGbBA==</DigestValue>
 </Reference>
 <Reference URI="static%2Fcurl%2Fca-bundle.crt">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"></DigestMethod>
@@ -217,11 +217,11 @@ QY10fG1EWQ==</DigestValue>
 </Reference>
 </SignedInfo>
 <SignatureValue>
-Pvbwv5YemOowq5SW7AW37P41MANf2rrgTCAHVANGwMpitfv44U1uX3ULe2QM3HAXWp/IsRRXx4gb
-xgvfirg8+7W2LN5iLgB1fj9Eza0HqLp7DoUYtEspfm1qZFFx3Ym6sjgyT6DeYhxO4iAsUKT9ctyM
-JIs04Ni+WYIWUkocm/BAGO29PODot83Hw3eyq8C4JiXtx6euQgxqba65K7kEqxjGCAMIj23rd9kt
-KIzB99chxBccOYA7CvvRvthWgL8PruOAym8JgHt8LTbxEcaLv1VIVg+eCbnikflxkrBSlCl2L5mR
-7HdAy7g9d7PiOAsSfv0S9Jxn/f+28DCJJf1PyQ==
+KPPjYJNoLx0CJxQUKSrL6rgQum9cckGtHOUJyOvSTOi0eC+CVkML2jdd+3jnkEuumAZj463rIpY3
+y58YLPwT/EZbt3ooApgqS28UWFKch1IUU5FqqZpEtFEffB6dO16riexIoVI7TZiYuEhtG5OonudS
+YxZURPmSQWzazSInYF5dQXzms1votjOH01FmRt/soWZ5GucKQIOW0NqZP3vmkHR0X8dherLGGrB5
+ynH//+VpL9qfYJ5eOqzbEq78ytMm+cYz82PFfrTNDhBCm0097a6z9Qta+Ijod/NSDdLBlotcz8TY
+372G0bAeEC4I/SKYqUKwjGGImn44P0gAhUrH4A==
 </SignatureValue>
 <KeyInfo>
 <X509Data>

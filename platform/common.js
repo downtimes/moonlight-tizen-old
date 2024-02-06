@@ -9,7 +9,6 @@
 // all other definitions in the anonymous function are inaccessible to external
 // code.
 var common = (function () {
-  var nacl_module;
   /**
   * Create the Native Client <embed> element as a child of the DOM element
   * named "listener".
@@ -40,7 +39,6 @@ var common = (function () {
     // this is needed if the module is being loaded on a Chrome App's
     // background page (see crbug.com/350445).
     moduleEl.offsetTop;
-    nacl_module = moduleEl;
   }
 
   /**
@@ -75,6 +73,36 @@ var common = (function () {
     return s.lastIndexOf(prefix, 0) === 0;
   }
 
+  /** Maximum length of logMessageArray. */
+  var kMaxLogMessageLength = 20;
+
+  /** An array of messages to display in the element with id "log". */
+  var logMessageArray = [];
+
+  /**
+   * Add a message to an element with id "log".
+   *
+   * This function is used by the default "log:" message handler.
+   *
+   * @param {string} message The message to log.
+   */
+  function logMessage(message) {
+    logMessageArray.push(message);
+    if (logMessageArray.length > kMaxLogMessageLength)
+      logMessageArray.shift();
+
+    document.getElementById('log').textContent = logMessageArray.join('\n');
+    console.log(message);
+  }
+
+  /**
+   */
+  var defaultMessageTypes = {
+    'alert': alert,
+    'log': logMessage
+  };
+
+
   /**
    * Called when the NaCl module sends a message to JavaScript (via
    * PPB_Messaging.PostMessage())
@@ -85,12 +113,13 @@ var common = (function () {
    *     the data sent from the NaCl module.
    */
   function handleMessage(message_event) {
-    if (typeof message_event.data === 'string') {
+    var message = message_event.data;
+    if (typeof message === 'string') {
       for (var type in defaultMessageTypes) {
         if (defaultMessageTypes.hasOwnProperty(type)) {
-          if (startsWith(message_event.data, type + ':')) {
+          if (startsWith(message, type + ':')) {
             func = defaultMessageTypes[type];
-            func(message_event.data.slice(type.length + 1));
+            func(message.slice(type.length + 1));
             return;
           }
         }
@@ -98,10 +127,9 @@ var common = (function () {
     }
 
     if (typeof window.handleMessage !== 'undefined') {
-      window.handleMessage(message_event);
+      window.handleMessage(message);
     } else {
-      updateStatus(message_event.data)
-      console.log('Unhandled message: ' + message_event.data);
+      console.log('Unhandled message: ' + message);
     }
   }
 
@@ -111,7 +139,7 @@ var common = (function () {
    * This event listener is registered in createNaClModule above.
    */
   function handleError(event) {
-    // We can't use common.naclModule yet because the module has not been
+    // We can't use common.nacl_module yet because the module has not been
     // loaded.
     console.log('%c[handleError, common.js]', 'color: red;', event);
     var moduleEl = document.getElementById('nacl_module');
@@ -141,14 +169,15 @@ var common = (function () {
    *
    * This event listener is registered in attachDefaultListeners above.
    */
+  var nacl_module;
   function handleLoaded() {
     updateStatus('RUNNING');
+    nacl_module = document.getElementById("nacl_module");
 
     if (typeof window.moduleDidLoad !== 'undefined') {
       window.moduleDidLoad();
     }
   }
-
   /**
    * Called when the DOM content has loaded; i.e. the page's document is fully
    * parsed. At this point, we can safely query any elements in the document via

@@ -1274,54 +1274,46 @@ function loadHTTPCertsCb() {
     if (savedCert.cert != null) { // we have a saved cert
       pairingCert = savedCert.cert;
     }
+    // TODO: here it works we can control the UI with the remote but nothing is highlighted...
+    restoreUiAfterNaClLoad();
 
-    getData('uniqueid', function (savedUniqueid) {
-      // See comment on myUniqueid
-      /*if (savedUniqueid.uniqueid != null) { // we have a saved uniqueid
-        myUniqueid = savedUniqueid.uniqueid;
-      } else {
-        myUniqueid = uniqueid();
-        storeData('uniqueid', myUniqueid, null);
-      }*/
-
-      if (!pairingCert) { // we couldn't load a cert. Make one.
-        common.updateStatus("CreatingCert");
-        console.warn('%c[index.js, moduleDidLoad]', 'color: green;', 'Failed to load local cert. Generating new one');
-        sendMessage('makeCert', []).then(function (cert) {
-          storeData('cert', cert, null);
-          pairingCert = cert;
-          console.info('%c[index.js, moduleDidLoad]', 'color: green;', 'Generated new cert:', cert);
-        }, function (failedCert) {
-          console.error('%c[index.js, moduleDidLoad]', 'color: green;', 'Failed to generate new cert! Returned error was: \n', failedCert);
-        }).then(function (ret) {
-          sendMessage('httpInit', [pairingCert.cert, pairingCert.privateKey, myUniqueid]).then(function (ret) {
-            restoreUiAfterNaClLoad();
-          }, function (failedInit) {
-            console.error('%c[index.js, moduleDidLoad]', 'color: green;', 'Failed httpInit! Returned error was: ', failedInit);
-          });
-        });
-      } else {
+    if (!pairingCert) { // we couldn't load a cert. Make one.
+      console.warn('%c[index.js, moduleDidLoad]', 'color: green;', 'Failed to load local cert. Generating new one');
+      sendMessage('makeCert', []).then(function (cert) {
+        common.updateStatus("CertCreated");
+        storeData('cert', cert, null);
+        pairingCert = cert;
+        console.info('%c[index.js, moduleDidLoad]', 'color: green;', 'Generated new cert:', cert);
+      }, function (failedCert) {
+        console.error('%c[index.js, moduleDidLoad]', 'color: green;', 'Failed to generate new cert! Returned error was: \n', failedCert);
+      }).then(function (ret) {
         sendMessage('httpInit', [pairingCert.cert, pairingCert.privateKey, myUniqueid]).then(function (ret) {
           restoreUiAfterNaClLoad();
         }, function (failedInit) {
           console.error('%c[index.js, moduleDidLoad]', 'color: green;', 'Failed httpInit! Returned error was: ', failedInit);
         });
-      }
-
-      // load previously connected hosts, which have been killed into an object, and revive them back into a class
-      getData('hosts', function (previousValue) {
-        hosts = previousValue.hosts != null ? previousValue.hosts : {};
-        for (var hostUID in hosts) { // programmatically add each new host.
-          var revivedHost = new NvHTTP(hosts[hostUID].address, myUniqueid, hosts[hostUID].userEnteredAddress);
-          revivedHost.serverUid = hosts[hostUID].serverUid;
-          revivedHost.externalIP = hosts[hostUID].externalIP;
-          revivedHost.hostname = hosts[hostUID].hostname;
-          revivedHost.ppkstr = hosts[hostUID].ppkstr;
-          addHostToGrid(revivedHost);
-        }
-        startPollingHosts();
-        console.log('%c[index.js]', 'color: green;', 'Loaded previously connected hosts');
       });
+    } else {
+      sendMessage('httpInit', [pairingCert.cert, pairingCert.privateKey, myUniqueid]).then(function (ret) {
+        restoreUiAfterNaClLoad();
+      }, function (failedInit) {
+        console.error('%c[index.js, moduleDidLoad]', 'color: green;', 'Failed httpInit! Returned error was: ', failedInit);
+      });
+    }
+
+    // load previously connected hosts, which have been killed into an object, and revive them back into a class
+    getData('hosts', function (previousValue) {
+      hosts = previousValue.hosts != null ? previousValue.hosts : {};
+      for (var hostUID in hosts) { // programmatically add each new host.
+        var revivedHost = new NvHTTP(hosts[hostUID].address, myUniqueid, hosts[hostUID].userEnteredAddress);
+        revivedHost.serverUid = hosts[hostUID].serverUid;
+        revivedHost.externalIP = hosts[hostUID].externalIP;
+        revivedHost.hostname = hosts[hostUID].hostname;
+        revivedHost.ppkstr = hosts[hostUID].ppkstr;
+        addHostToGrid(revivedHost);
+      }
+      startPollingHosts();
+      console.log('%c[index.js]', 'color: green;', 'Loaded previously connected hosts');
     });
   });
 }
