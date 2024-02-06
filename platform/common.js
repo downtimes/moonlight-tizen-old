@@ -2,6 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+console.log = function (...args) {
+  common.logMessage(args.join(" "));
+}
+
 // Javascript module pattern:
 //   see http://en.wikipedia.org/wiki/Unobtrusive_JavaScript#Namespaces
 // In essence, we define an anonymous function which is immediately called and
@@ -92,7 +96,6 @@ var common = (function () {
       logMessageArray.shift();
 
     document.getElementById('log').textContent = logMessageArray.join('\n');
-    console.log(message);
   }
 
   /**
@@ -113,6 +116,7 @@ var common = (function () {
    *     the data sent from the NaCl module.
    */
   function handleMessage(message_event) {
+    console.log("Message from Nacl");
     var message = message_event.data;
     if (typeof message === 'string') {
       for (var type in defaultMessageTypes) {
@@ -222,7 +226,8 @@ var common = (function () {
     nacl_module: nacl_module,
     attachDefaultListeners: attachDefaultListeners,
     domContentLoaded: domContentLoaded,
-    updateStatus: updateStatus
+    updateStatus: updateStatus,
+    logMessage: logMessage
   };
 }());
 

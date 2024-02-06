@@ -98,8 +98,19 @@ class NaClInstance : public pp::Instance {
     std::string method = msg.Get("method").AsString();
     pp::VarArray params(msg.Get("params"));
 
-    pp::Var response("Unhandled message received: " + method);
-    PostMessage(response);
+    pp::VarDictionary ret;
+    ret.Set("callbackId", pp::Var(callbackId));
+    ret.Set("type", pp::Var("resolve"));
+    ret.Set("ret", pp::Var("tester"));
+
+    if (strcmp(method.c_str(), "httpInit") == 0) {
+      PostMessage(ret);
+    } else if (strcmp(method.c_str(), "makeCert") == 0) {
+      PostMessage(ret);
+    }
+
+    pp::Var unknown_response("TransientMsg: Unhandled message received: " + method);
+    PostMessage(unknown_response);
   }
 
   /**

@@ -106,7 +106,7 @@ function onBoundsChanged() {
 
 function changeUiModeForNaClLoad() {
   $('#main-navigation').children().hide();
-  $("#main-content").children().not("#listener, #naclSpinner, #statusField").hide();
+  $("#main-content").children().not("#listener, #naclSpinner, #statusField, #log").hide();
   $('#naclSpinnerMessage').text('Loading Moonlight plugin...');
   $('#naclSpinner').css('display', 'inline-block');
 }

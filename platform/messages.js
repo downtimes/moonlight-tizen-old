@@ -33,6 +33,7 @@ var sendMessage = function (method, params) {
  * @return {void}
  */
 function handleMessage(msg) {
+  common.updateStatus("Handle message called: " + msg);
   if (msg.callbackId && callbacks[msg.callbackId]) { // if it's a callback, treat it as such
     common.updateStatus("callback called")
     callbacks[msg.callbackId][msg.ta.type](msg.ret);
