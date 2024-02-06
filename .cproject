@@ -22,7 +22,7 @@
 					<folderInfo id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.945998250." name="/" resourcePath="">
 						<toolChain id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.746017931" name="NaCl toolchain" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain">
 							<targetPlatform id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.945998250..1018980399" name=""/>
-							<builder buildPath="${workspace_loc:/nacl}/Debug-pnacl" id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder.1941949564" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="NaCl builder" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder"/>
+							<builder buildPath="${ProjDirPath}" command="make" enabledIncrementalBuild="true" id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder.1941949564" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="NaCl builder" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.builder"/>
 							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.c.721332725" name="NaCl C Compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.c"/>
 							<tool id="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.cpp.446476304" name="NaCl C++ compiler" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.debug.toolchain.compiler.cpp">
 								<inputType id="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input.1791015186" name="C++ input type" superClass="org.tizen.web.tv.sec.nacl.builder.toolchain.compiler.cpp.input"/>

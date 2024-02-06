@@ -10,7 +10,6 @@
     <tizen:application id="LKHNeeyxfp.MoonlightTizenOld" package="LKHNeeyxfp" required_version="3.0"/>
     <content src="index.html"/>
     <icon src="icons/icon128.png"/>
-
     <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
     <tizen:privilege name="http://tizen.org/privilege/internet"/>

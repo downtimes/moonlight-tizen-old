@@ -1,5 +1,6 @@
 Debug-pnacl
 CurrentBin
 .vscode
+/pnacl
 *.wgt
 
