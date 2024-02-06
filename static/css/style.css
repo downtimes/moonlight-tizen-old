@@ -322,3 +322,17 @@ main {
 .cancel-current .game-title {
     color: #fff;
 }
+
+.hovered {
+    background-color: rgba(158,158,158,.2);
+}
+
+.mdl-card.hovered {
+    background-color: initial;
+    transform: scale(1.1);
+    outline-color: #00A3C6;
+}
+
+#host-grid .mdl-shadow--4dp {
+    box-shadow: unset;
+}
