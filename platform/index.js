@@ -1274,13 +1274,10 @@ function loadHTTPCertsCb() {
     if (savedCert.cert != null) { // we have a saved cert
       pairingCert = savedCert.cert;
     }
-    // TODO: here it works we can control the UI with the remote but nothing is highlighted...
-    restoreUiAfterNaClLoad();
 
     if (!pairingCert) { // we couldn't load a cert. Make one.
       console.warn('%c[index.js, moduleDidLoad]', 'color: green;', 'Failed to load local cert. Generating new one');
       sendMessage('makeCert', []).then(function (cert) {
-        common.updateStatus("CertCreated");
         storeData('cert', cert, null);
         pairingCert = cert;
         console.info('%c[index.js, moduleDidLoad]', 'color: green;', 'Generated new cert:', cert);

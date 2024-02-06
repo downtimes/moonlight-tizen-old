@@ -107,10 +107,10 @@ class NaClInstance : public pp::Instance {
       PostMessage(ret);
     } else if (strcmp(method.c_str(), "makeCert") == 0) {
       PostMessage(ret);
+    } else {
+      pp::Var unknown_response("TransientMsg: Unhandled message received: " + method);
+      PostMessage(unknown_response);
     }
-
-    pp::Var unknown_response("TransientMsg: Unhandled message received: " + method);
-    PostMessage(unknown_response);
   }
 
   /**

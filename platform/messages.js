@@ -18,6 +18,7 @@ var sendMessage = function (method, params) {
       'reject': reject
     };
 
+    console.log("Sending message to NaCl: ", method);
     common.nacl_module.postMessage({
       'callbackId': id,
       'method': method,
@@ -33,21 +34,21 @@ var sendMessage = function (method, params) {
  * @return {void}
  */
 function handleMessage(msg) {
-  common.updateStatus("Handle message called: " + msg);
-  if (msg.callbackId && callbacks[msg.callbackId]) { // if it's a callback, treat it as such
-    common.updateStatus("callback called")
-    callbacks[msg.callbackId][msg.ta.type](msg.ret);
-    delete callbacks[msg.callbackId]
+  if (msg.data.callbackId && callbacks[msg.data.callbackId]) { // if it's a callback, treat it as such
+    console.log("callback called")
+    callbacks[msg.data.callbackId][msg.data.type](msg.data.ret);
+    delete callbacks[msg.data.callbackId]
   } else { // else, it's just info, or an event
-    console.log('%c[messages.js, handleMessage]', 'color:gray;', 'Message data: ', msg)
-    if (msg.indexOf('streamTerminated: ') === 0) { // if it's a recognized event, notify the appropriate function
+    console.log("Other message" + msg.data);
+    console.log('%c[messages.js, handleMessage]', 'color:gray;', 'Message data: ', msg.data)
+    if (msg.data.indexOf('streamTerminated: ') === 0) { // if it's a recognized event, notify the appropriate function
       // Release our keep awake request
       if (runningOnChrome()) {
         chrome.power.releaseKeepAwake();
       }
 
       // Show a termination snackbar message if the termination was unexpected
-      var errorCode = parseInt(msg.replace('streamTerminated: ', ''));
+      var errorCode = parseInt(msg.data.replace('streamTerminated: ', ''));
       switch (errorCode) {
         case 0: // ML_ERROR_GRACEFUL_TERMINATION
           break;
@@ -72,7 +73,7 @@ function handleMessage(msg) {
         // Return to app list anyway
         showApps(api);
       });
-    } else if (msg === 'Connection Established') {
+    } else if (msg.data === 'Connection Established') {
       $('#loadingSpinner').css('display', 'none');
       $('body').css('backgroundColor', 'black');
       $("#nacl_module").css("display", "");
@@ -82,14 +83,14 @@ function handleMessage(msg) {
       if (runningOnChrome()) {
         chrome.power.requestKeepAwake("display");
       }
-    } else if (msg.indexOf('ProgressMsg: ') === 0) {
-      $('#loadingMessage').text(msg.replace('ProgressMsg: ', ''));
-    } else if (msg.indexOf('TransientMsg: ') === 0) {
-      snackbarLog(msg.replace('TransientMsg: ', ''));
-    } else if (msg.indexOf('DialogMsg: ') === 0) {
+    } else if (msg.data.indexOf('ProgressMsg: ') === 0) {
+      $('#loadingMessage').text(msg.data.replace('ProgressMsg: ', ''));
+    } else if (msg.data.indexOf('TransientMsg: ') === 0) {
+      snackbarLog(msg.data.replace('TransientMsg: ', ''));
+    } else if (msg.data.indexOf('DialogMsg: ') === 0) {
       // FIXME: Really use a dialog
-      snackbarLogLong(msg.replace('DialogMsg: ', ''));
-    } else if (msg === 'displayVideo') {
+      snackbarLogLong(msg.data.replace('DialogMsg: ', ''));
+    } else if (msg.data === 'displayVideo') {
       // Show the video stream now
       $("#nacl_module")[0].style.opacity = 1.0;
       $("#listener").addClass("fullscreen");

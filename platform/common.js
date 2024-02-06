@@ -6,6 +6,9 @@ console.log = function (...args) {
   common.logMessage(args.join(" "));
 }
 
+console.info = console.log;
+console.error = console.log;
+
 // Javascript module pattern:
 //   see http://en.wikipedia.org/wiki/Unobtrusive_JavaScript#Namespaces
 // In essence, we define an anonymous function which is immediately called and
@@ -101,7 +104,6 @@ var common = (function () {
   /**
    */
   var defaultMessageTypes = {
-    'alert': alert,
     'log': logMessage
   };
 
@@ -131,7 +133,7 @@ var common = (function () {
     }
 
     if (typeof window.handleMessage !== 'undefined') {
-      window.handleMessage(message);
+      window.handleMessage(message_event);
     } else {
       console.log('Unhandled message: ' + message);
     }
@@ -173,10 +175,9 @@ var common = (function () {
    *
    * This event listener is registered in attachDefaultListeners above.
    */
-  var nacl_module;
   function handleLoaded() {
     updateStatus('RUNNING');
-    nacl_module = document.getElementById("nacl_module");
+    common.nacl_module = document.getElementById("nacl_module");
 
     if (typeof window.moduleDidLoad !== 'undefined') {
       window.moduleDidLoad();
@@ -223,7 +224,7 @@ var common = (function () {
 
   // The symbols to export.
   return {
-    nacl_module: nacl_module,
+    nacl_module: null,
     attachDefaultListeners: attachDefaultListeners,
     domContentLoaded: domContentLoaded,
     updateStatus: updateStatus,

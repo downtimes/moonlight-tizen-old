@@ -101,6 +101,60 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
 <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
 <tizen:privilege name="http://tizen.org/privilege/internet"/>
