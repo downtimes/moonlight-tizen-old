@@ -7,8 +7,8 @@ var callbacks_ids = 1;
  * var sendMessage - Sends a message with arguments to the NaCl module
  *
  * @param  {String} method A named method
- * @param  {(String|Array)} params An array of options or a signle string
- * @return {void}        The NaCl module calls back trought the handleMessage method
+ * @param  {(String|Array)} params An array of options or a single string
+ * @return {void}        The NaCl module calls back through the handleMessage method
  */
 var sendMessage = function (method, params) {
   return new Promise(function (resolve, reject) {
