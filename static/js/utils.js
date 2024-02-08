@@ -265,19 +265,19 @@ NvHTTP.prototype = {
 
   toString: function() {
     var string = '';
-    string += 'server address: ' + this.address + '\r\n';
-    string += 'server UID: ' + this.serverUid + '\r\n';
-    string += 'is paired: ' + this.paired + '\r\n';
-    string += 'current game: ' + this.currentGame + '\r\n';
-    string += 'server major version: ' + this.serverMajorVersion + '\r\n';
-    string += 'appversion: ' + this.appVersion + '\r\n';
-    string += 'GFE version: ' + this.gfeVersion + '\r\n';
-    string += 'gpu type: ' + this.gputype + '\r\n';
-    string += 'number of apps: ' + this.numofapps + '\r\n';
-    string += 'supported display modes: ' + '\r\n';
-    for (var displayMode in this.supportedDisplayModes) {
-      string += '\t' + displayMode + ': ' + this.supportedDisplayModes[displayMode] + '\r\n';
-    }
+    // string += 'server address: ' + this.address + '\r\n';
+    // string += 'server UID: ' + this.serverUid + '\r\n';
+    // string += 'is paired: ' + this.paired + '\r\n';
+    // string += 'current game: ' + this.currentGame + '\r\n';
+    // string += 'server major version: ' + this.serverMajorVersion + '\r\n';
+    // string += 'appversion: ' + this.appVersion + '\r\n';
+    // string += 'GFE version: ' + this.gfeVersion + '\r\n';
+    // string += 'gpu type: ' + this.gputype + '\r\n';
+    // string += 'number of apps: ' + this.numofapps + '\r\n';
+    // string += 'supported display modes: ' + '\r\n';
+    // for (var displayMode in this.supportedDisplayModes) {
+    //   string += '\t' + displayMode + ': ' + this.supportedDisplayModes[displayMode] + '\r\n';
+    // }
     return string;
   },
 

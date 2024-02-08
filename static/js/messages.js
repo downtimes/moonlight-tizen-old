@@ -18,8 +18,7 @@ var sendMessage = function (method, params) {
       'reject': reject
     };
 
-    console.log("Sending message to NaCl: ", method);
-    common.nacl_module.postMessage({
+    nacl_module.postMessage({
       'callbackId': id,
       'method': method,
       'params': params

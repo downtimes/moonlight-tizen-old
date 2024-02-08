@@ -621,7 +621,6 @@ function showAppsMode() {
   $("#listener").removeClass("fullscreen");
   $('#loadingSpinner').css('display', 'none');
   $('body').css('backgroundColor', '#282C38');
-  $('#nacl_module').css('display', 'none');
 
   // Restore back to a window
   if (runningOnChrome() && windowState == 'normal') {

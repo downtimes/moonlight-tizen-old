@@ -54,10 +54,16 @@ endif
 
 $(eval $(call NMF_RULE,$(TARGET),))
 
-#use $(OUTDIR) which is defined by common.mk and make extra folder afterwards in which we copy
-#the relevant data to have smaller footprint compared to current >100Mb
+
+PACKAGEDIR = build
+
 package:
-	@echo 'Invoking: NaCl Translator'
-	$(NACL_SDK_ROOT)/toolchain/linux_pnacl/bin/pnacl-translate --allow-llvm-bitcode-input -arch armv7 -o pnacl/Release/MoonlightTizenOld_armv7.nexe pnacl/Release/MoonlightTizenOld.pexe
-	python "$(NACL_SDK_ROOT)/tools/create_nmf.py" -s ./  -o "pnacl/Release/MoonlightTizenOld.nmf" "pnacl/Release/MoonlightTizenOld_armv7.nexe"
-	@echo 'Finished translation'
+	@echo 'Preparing everything for packaging'
+	$(NACL_SDK_ROOT)/toolchain/$(OSNAME)_$(TOOLCHAIN)/bin/pnacl-translate --allow-llvm-bitcode-input -arch armv7 -o $(OUTDIR)/MoonlightTizenOld_armv7.nexe $(OUTDIR)/MoonlightTizenOld.pexe
+	python "$(NACL_SDK_ROOT)/tools/create_nmf.py" -s ./  -o "$(OUTDIR)/MoonlightTizenOld.nmf" "$(OUTDIR)/MoonlightTizenOld_armv7.nexe"
+	rm MoonlightTizenOld_armv7.nexe
+	mkdir -p $(PACKAGEDIR)/pnacl/Release
+	cp $(OUTDIR)/MoonlightTizenOld.nmf $(OUTDIR)/MoonlightTizenOld_armv7.nexe $(PACKAGEDIR)/pnacl/Release
+	cp -r static $(PACKAGEDIR)
+	cp -r icons $(PACKAGEDIR)
+	cp config.xml index.html $(PACKAGEDIR)

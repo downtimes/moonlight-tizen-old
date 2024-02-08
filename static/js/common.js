@@ -2,12 +2,14 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-console.log = function (...args) {
+function logOut(...args) {
   common.logMessage(args.join(" "));
 }
 
-console.info = console.log;
-console.error = console.log;
+//console.log = logOut;
+//console.info = logOut;
+console.warn = logOut;
+console.error = logOut;
 
 // Javascript module pattern:
 //   see http://en.wikipedia.org/wiki/Unobtrusive_JavaScript#Namespaces
@@ -118,7 +120,6 @@ var common = (function () {
    *     the data sent from the NaCl module.
    */
   function handleMessage(message_event) {
-    console.log("Message from Nacl");
     var message = message_event.data;
     if (typeof message === 'string') {
       for (var type in defaultMessageTypes) {
@@ -224,7 +225,6 @@ var common = (function () {
 
   // The symbols to export.
   return {
-    nacl_module: null,
     attachDefaultListeners: attachDefaultListeners,
     domContentLoaded: domContentLoaded,
     updateStatus: updateStatus,
