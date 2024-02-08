@@ -254,6 +254,7 @@ void MoonlightInstance::HandleStartStream(int32_t callbackId, pp::VarArray args)
     m_AppVersion = appversion;
     m_GfeVersion = gfeversion;
     m_RtspUrl = rtspurl;
+    m_MouseLockingFeatureEnabled = false;
     
     // Initialize the rendering surface before starting the connection
     if (InitializeRenderingSurface(m_StreamConfig.width, m_StreamConfig.height)) {

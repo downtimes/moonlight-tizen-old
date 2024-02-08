@@ -1,8 +1,8 @@
 #include "moonlight.hpp"
+#include "libgamestream/http.h"
 
 #include "ppapi/cpp/var_array_buffer.h"
 
-#include <http.h>
 #include <errors.h>
 #include <string.h>
 #include <sys/mount.h>

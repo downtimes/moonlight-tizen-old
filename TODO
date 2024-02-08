@@ -1,0 +1,6 @@
+* Check all calls from JS => NaCl and the other way around
+* Try to improve the Navigation module (Add Host/Quit App etc) when navigating with remote control
+* Build docker file like https://github.com/KyroFrCode/moonlight-chrome-tizen-docker for easy installation
+* Check if the Gamepad functionality works and get Rumble to work as well
+* Investigate why I can only stream with low bitrates
+* Get rid of Debug output
