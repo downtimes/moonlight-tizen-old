@@ -527,7 +527,7 @@ NvHTTP.prototype = {
 
   updateExternalAddressIP4: function() {
     console.log('%c[utils.js, updateExternalAddressIP4]', 'color: gray;', 'Finding external IPv4 address for ' + this.hostname);
-    return sendMessage('STUN').then(function(addr) {
+    return sendMessage('STUN', []).then(function(addr) {
       if (addr) {
         this.externalIP = addr
         console.log('%c[utils.js, updateExternalAddressIP4]', 'color: gray;', 'Found external IPv4 address: ' + this.hostname + ' -> ' + this.externalIP);

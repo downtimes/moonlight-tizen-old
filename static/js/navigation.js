@@ -108,9 +108,7 @@ const Views = {
       'selectFramerate',
       'bitrateField',
       'externalAudioBtn',
-      'optimizeGamesBtn',
-      'framePacingBtn',
-      'audioSyncBtn']),
+      'optimizeGamesBtn']),
     left: function() {
       this.view.prev();
     },

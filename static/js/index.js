@@ -16,8 +16,6 @@ function attachListeners() {
   //$('#bitrateSlider').on('change', saveBitrate); //FIXME: it seems not working
   $("#remoteAudioEnabledSwitch").on('click', saveRemoteAudio);
   $('#optimizeGamesSwitch').on('click', saveOptimize);
-  $('#framePacingSwitch').on('click', saveFramePacing);
-  $('#audioSyncSwitch').on('click', saveAudioSync);
   $('#addHostCell').on('click', addHost);
   $('#backIcon').on('click', showHostsAndSettingsMode);
   $('#quitCurrentApp').on('click', stopGameWithConfirmation);
@@ -688,17 +686,13 @@ function startGame(host, appID) {
       var streamHeight = $('#selectResolution').data('value').split(':')[1];
       // we told the user it was in Mbps. We're dirty liars and use Kbps behind their back.
       var bitrate = parseInt($("#bitrateSlider").val()) * 1000;
-      const framePacingEnabled = $('#framePacingSwitch').parent().hasClass('is-checked') ? 1 : 0;
-      const audioSyncEnabled = $('#audioSyncSwitch').parent().hasClass('is-checked') ? 1 : 0;
       console.log('%c[index.js, startGame]', 'color:green;',
         'startRequest:' + host.address +
         ":" + streamWidth +
         ":" + streamHeight +
         ":" + frameRate +
         ":" + bitrate +
-        ":" + optimize +
-        ":" + framePacingEnabled,
-        ":" + audioSyncEnabled);
+        ":" + optimize);
 
       var rikey = generateRemoteInputKey();
       var rikeyid = generateRemoteInputKeyId();
@@ -730,8 +724,6 @@ function startGame(host, appID) {
             rikeyid.toString(),
             host.appVersion,
             /*host.gfeVersion*/"",
-            framePacingEnabled,
-            audioSyncEnabled
           ]);
         }, function (failedResumeApp) {
           console.error('%c[index.js, startGame]', 'color:green;', 'Failed to resume the app! Returned error was' + failedResumeApp);
@@ -769,8 +761,6 @@ function startGame(host, appID) {
           rikeyid.toString(),
           host.appVersion,
           "",
-          framePacingEnabled,
-          audioSyncEnabled
         ]);
       }, function (failedLaunchApp) {
         console.error('%c[index.js, launchApp]', 'color: green;', 'Failed to launch app width id: ' + appID + '\nReturned error was: ' + failedLaunchApp);
@@ -1066,22 +1056,6 @@ function saveOptimize() {
   }, 100);
 }
 
-function saveFramePacing() {
-  setTimeout(function () {
-    const chosenFramePacing = $("#framePacingSwitch").parent().hasClass('is-checked');
-    console.log('%c[index.js, saveFramePacing]', 'color: green;', 'Saving framePacing state : ' + chosenFramePacing);
-    storeData('framePacing', chosenFramePacing, null);
-  }, 100);
-}
-
-function saveAudioSync() {
-  setTimeout(function () {
-    const chosenAudioSync = $("#audioSyncSwitch").parent().hasClass('is-checked');
-    console.log('%c[index.js, saveAudioSync]', 'color: green;', 'Saving audio sync state : ' + chosenAudioSync);
-    storeData('audioSync', chosenAudioSync, null);
-  }, 100);
-}
-
 function saveFramerate() {
   var chosenFramerate = $(this).data('value');
   $('#selectFramerate').text($(this).text()).data('value', chosenFramerate);
@@ -1228,28 +1202,6 @@ function loadUserDataCb() {
       document.querySelector('#optimizeGamesBtn').MaterialIconToggle.uncheck();
     } else {
       document.querySelector('#optimizeGamesBtn').MaterialIconToggle.check();
-    }
-  });
-
-  console.log('load stored framePacing prefs');
-  getData('framePacing', function (previousValue) {
-    if (previousValue.framePacing == null) {
-      document.querySelector('#framePacingBtn').MaterialIconToggle.check();
-    } else if (previousValue.framePacing == false) {
-      document.querySelector('#framePacingBtn').MaterialIconToggle.uncheck();
-    } else {
-      document.querySelector('#framePacingBtn').MaterialIconToggle.check();
-    }
-  });
-
-  console.log('load stored audioSync prefs');
-  getData('audioSync', function (previousValue) {
-    if (previousValue.audioSync == null) {
-      document.querySelector('#audioSyncBtn').MaterialIconToggle.check();
-    } else if (previousValue.audioSync == false) {
-      document.querySelector('#audioSyncBtn').MaterialIconToggle.uncheck();
-    } else {
-      document.querySelector('#audioSyncBtn').MaterialIconToggle.check();
     }
   });
 
