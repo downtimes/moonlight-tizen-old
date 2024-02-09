@@ -11,18 +11,18 @@
 #include "ppapi/cpp/input_event.h"
 
 // Requests the NaCl module to connection to the server specified after the :
-constexpr const char* MSG_START_REQUEST = "startRequest";
+static const char* MSG_START_REQUEST = "startRequest";
 // Requests the NaCl module stop streaming
-constexpr const char* MSG_STOP_REQUEST = "stopRequest";
-constexpr const char* MSG_OPENURL = "openUrl";
-constexpr const char* MSG_HTTPINIT = "httpInit";
-constexpr const char* MSG_MAKE_CERT = "makeCert";
-constexpr const char* MSG_PAIR = "pair";
-constexpr const char* MSG_STUN = "STUN";
+static const char* MSG_STOP_REQUEST = "stopRequest";
+static const char* MSG_OPENURL = "openUrl";
+static const char* MSG_HTTPINIT = "httpInit";
+static const char* MSG_MAKE_CERT = "makeCert";
+static const char* MSG_PAIR = "pair";
+static const char* MSG_STUN = "STUN";
 
 // Sent by the NaCl module when the stream has stopped whether user-requested or
 // not
-constexpr char* MSG_STREAM_TERMINATED = "streamTerminated: ";
+static const char* MSG_STREAM_TERMINATED = "streamTerminated: ";
 
 MoonlightInstance* g_Instance;
 
