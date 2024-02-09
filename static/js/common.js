@@ -106,7 +106,7 @@ var common = (function () {
   /**
    */
   var defaultMessageTypes = {
-    'log': logMessage
+    'LogMsg': logMessage
   };
 
 

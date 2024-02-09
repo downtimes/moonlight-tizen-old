@@ -240,7 +240,7 @@ void MoonlightInstance::HandleStartStream(int32_t callbackId,
 
   // TODO: If/when video encryption is added, we'll probably want to
   // limit that to devices that support AES instructions.
-  m_StreamConfig.encryptionFlags = ENCFLG_AUDIO;
+  m_StreamConfig.encryptionFlags = ENCFLG_NONE;
 
   // Load the rikey and rikeyid into the stream configuration
   hexStringToBytes(rikey.c_str(), m_StreamConfig.remoteInputAesKey);
