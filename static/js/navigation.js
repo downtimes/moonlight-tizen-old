@@ -330,10 +330,10 @@ const Views = {
         Navigation.pop();
         api.refreshServerInfo().then(function (ret) {
           // Return to app list with new currentgame
-          showApps(api);
+          showApps(api, false);
         }, function () {
           // Return to app list anyway
-          showApps(api);
+          showApps(api, false);
         })
       }, function () { });
     },
@@ -477,12 +477,18 @@ const Navigation = (function () {
         get().enter();
       }
     }
+    
+    function reenter() {
+      if (viewStack.length > 1) {
+        get().enter();
+      }
+    }
 
     function get() {
       return viewStack[viewStack.length - 1];
     }
 
-    return { get, push, change, pop };
+    return { get, push, change, pop, reenter };
   })();
 
   const State = (function () {
@@ -518,6 +524,7 @@ const Navigation = (function () {
     down: runOp('down'),
     push: Stack.push,
     change: Stack.change,
+    reenter: Stack.reenter,
     pop: Stack.pop,
     start: State.start,
     stop: State.stop,

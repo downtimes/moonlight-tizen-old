@@ -1,6 +1,7 @@
 * Fix hang when the decoder craps out
 * Build docker file like https://github.com/KyroFrCode/moonlight-chrome-tizen-docker for easy installation
 * Check if the Gamepad functionality works and get Rumble to work as well
+* Fix polling the server every 5 seconds not stopping correctly
 * Investigate why resolutions > 1080p fail the decoder stage
-* Check why the audio controls don't work
+* Fix pairing input being a little janky
 * Get rid of Debug output

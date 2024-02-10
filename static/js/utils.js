@@ -489,7 +489,7 @@ NvHTTP.prototype = {
             console.error('%c[utils.js, utils.js,  getBoxArt]', 'color: gray;', 'Box-art request failed!', error);
             reject(error);
             return;
-          }).bind(this);
+          }.bind(this));
         }.bind(this));
       }.bind(this));
     }

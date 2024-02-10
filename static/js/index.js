@@ -309,17 +309,15 @@ function hostChosen(host) {
   if (!host.paired) {
     // Still not paired; go to the pairing flow
     pairTo(host, function () {
-      showApps(host);
+      showApps(host, true);
       saveHosts();
-      Navigation.push(Views.Apps);
     },
       function () {
         startPollingHosts();
       });
   } else {
     // When we queried again, it was paired, so show apps.
-    showApps(host);
-    Navigation.push(Views.Apps);
+    showApps(host, true);
   }
 }
 
@@ -458,10 +456,9 @@ function removeClicked(host) {
 // this requires a hot-off-the-host `api`, and the appId we're going to stylize
 // the function was made like this so that we can remove duplicated code, but
 // not do N*N stylizations of the box art, or make the code not flow very well
-function stylizeBoxArt(freshApi, appIdToStylize) {
+function prepareTitleCard(el, currentGame, appIdToStylize) {
   // If the running game is the good one then style it
-  var el = document.querySelector("#game-" + appIdToStylize);
-  if (freshApi.currentGame === appIdToStylize) {
+  if (currentGame === appIdToStylize) {
     var active_play = $("<div>", {
       class: "current-active",
       id: "current-active",
@@ -476,6 +473,12 @@ function stylizeBoxArt(freshApi, appIdToStylize) {
     el.classList.remove('current-game')
     el.title.replace(' (Running)', '') // TODO: Replace with localized string so make it e.title = game_title
   }
+  var title = $("<div>", {
+    class: "game-title",
+    text: el.title,
+    tabindex: 0,
+  })
+  $(el).append(title);
 }
 
 function sortTitles(list, sortOrder) {
@@ -508,7 +511,7 @@ function sortTitles(list, sortOrder) {
 }
 
 // show the app list
-function showApps(host) {
+function showApps(host, new_navigation) {
   if (!host || !host.paired) { // safety checking. shouldn't happen.
     console.log('%c[index.js, showApps]', 'color: green;', 'Moved into showApps, but `host` did not initialize properly! Failing.');
     return;
@@ -549,6 +552,7 @@ function showApps(host) {
         gameCard.setAttribute('role', 'link')
         gameCard.tabIndex = 0
         gameCard.title = app.title
+        prepareTitleCard(gameCard, host.currentGame, app.id);
 
         gameCard.addEventListener('click', e => {
           startGame(host, app.id)
@@ -572,8 +576,6 @@ function showApps(host) {
         })
         document.querySelector('#game-grid').appendChild(gameCard);
         // apply CSS stylization to indicate whether the app is active
-        stylizeBoxArt(host, app.id);
-        gameCard.innerHTML = `<div class="game-title">${gameCard.title}</div>`
       }
       var img = new Image();
       host.getBoxArt(app.id).then(function (resolvedPromise) {
@@ -585,6 +587,11 @@ function showApps(host) {
       img.onload = e => img.classList.add('fade-in');
       $(gameCard).append(img);
     });
+    if (new_navigation) {
+      Navigation.push(Views.Apps);
+    } else {
+      Navigation.reenter();
+    }
   }, function (failedAppList) {
     $('#naclSpinner').hide();
     var img = new Image();
@@ -592,6 +599,11 @@ function showApps(host) {
     $("#game-grid").html(img)
     snackbarLog('Unable to retrieve your games')
     console.error('%c[index.js, showApps]', 'Failed to get applist from host: ' + host.hostname, '\n Host object:', host, host.toString());
+    if (new_navigation) {
+      Navigation.push(Views.Apps);
+    } else {
+      Navigation.reenter();
+    }
   });
 
   showAppsMode();
@@ -720,7 +732,7 @@ function startGame(host, appID) {
 
           if ($root.attr('status_code') != 200) {
             snackbarLog('Error ' + $root.attr('status_code') + ': ' + $root.attr('status_message'));
-            showApps(host);
+            showApps(host, false);
             return;
           }
 
@@ -737,7 +749,7 @@ function startGame(host, appID) {
           ]);
         }, function (failedResumeApp) {
           console.error('%c[index.js, startGame]', 'color:green;', 'Failed to resume the app! Returned error was' + failedResumeApp);
-          showApps(host);
+          showApps(host, false);
           return;
         });
       }
@@ -757,7 +769,7 @@ function startGame(host, appID) {
 
         if ($root.attr('status_code') != 200) {
           snackbarLog('Error ' + $root.attr('status_code') + ': ' + $root.attr('status_message'));
-          showApps(host);
+          showApps(host, false);
           return;
         }
 
@@ -774,7 +786,7 @@ function startGame(host, appID) {
         ]);
       }, function (failedLaunchApp) {
         console.error('%c[index.js, launchApp]', 'color: green;', 'Failed to launch app width id: ' + appID + '\nReturned error was: ' + failedLaunchApp);
-        showApps(host);
+        showApps(host, false);
         return;
       });
 
@@ -876,7 +888,7 @@ function stopGame(host, callbackFunction) {
       snackbarLog('Stopping ' + appName);
       host.quitApp().then(function (ret2) {
         host.refreshServerInfo().then(function (ret3) { // refresh to show no app is currently running.
-          showApps(host);
+          showApps(host, false);
           if (typeof (callbackFunction) === "function") callbackFunction();
         }, function (failedRefreshInfo2) {
           console.error('%c[index.js, stopGame]', 'color:green;', 'Failed to refresh server info! Returned error was:' + failedRefreshInfo + ' and failed server was:', host, host.toString());

@@ -65,10 +65,10 @@ function handleMessage(msg) {
 
       api.refreshServerInfo().then(function (ret) {
         // Return to app list with new currentgame
-        showApps(api);
+        showApps(api, false);
       }, function () {
         // Return to app list anyway
-        showApps(api);
+        showApps(api, false);
       });
     } else if (msg.data === 'Connection Established') {
       $('#loadingSpinner').css('display', 'none');
