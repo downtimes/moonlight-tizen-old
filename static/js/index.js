@@ -1159,9 +1159,9 @@ function initSamsungKeys() {
       //'SmartHub',      // F5
       'Source',        // F6
       'ChannelList',   // F7
-      'VolumeMute',    // F8
-      'VolumeDown',    // F9
-      'VolumeUp',      // F10
+      //'VolumeMute',    // F8
+      //'VolumeDown',    // F9
+      //'VolumeUp',      // F10
       'ChannelDown',   // F11
       'ChannelUp',     // F12
     ],

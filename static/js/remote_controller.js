@@ -21,15 +21,12 @@ function remoteControllerHandler(e) {
     Navigation.back();
     break;
   case tvKey.KEY_VOLUME_UP:
-    common.logMessage("Volume Up");
     tizen.tvaudiocontrol.setVolumeUp();
     break;
   case tvKey.KEY_VOLUME_DOWN:
-    common.logMessage("Volume down");
     tizen.tvaudiocontrol.setVolumeDown();
     break;
   case tvKey.KEY_VOLUME_MUTE:
-    common.logMessage("Volume mute");
     tizen.tvaudiocontrol.setMute(!tizen.tvaudiocontrol.isMute());
     break;
   }
