@@ -1,5 +1,4 @@
-
-* Fix Quit Moonlight Dialog buttons being highlighted wrong
+* Fix hang when the decoder craps out
 * Build docker file like https://github.com/KyroFrCode/moonlight-chrome-tizen-docker for easy installation
 * Check if the Gamepad functionality works and get Rumble to work as well
 * Investigate why resolutions > 1080p fail the decoder stage

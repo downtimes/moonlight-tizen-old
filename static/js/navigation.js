@@ -58,7 +58,7 @@ class ListView {
       unmark(array[this.index]);
       --this.index;
       mark(array[this.index]);
-    } 
+    }
   }
 
   next() {
@@ -67,9 +67,20 @@ class ListView {
       unmark(array[this.index]);
       ++this.index;
       mark(array[this.index]);
-    } 
+    }
   }
-  
+
+  commonEnter() {
+    const array = this.func();
+    for (const elem of array) {
+      if (elem === this.current()) {
+        mark(elem);
+      } else {
+        unmark(elem);
+      }
+    }
+  }
+
   setIndex(index) {
     const array = this.func();
     if (index >= 0 && index < array.length - 1) {
@@ -108,7 +119,7 @@ const Views = {
       Navigation.push(Views.QuitMoonlightDialog);
     },
     enter: function () {
-      mark(this.view.current());
+      this.view.commonEnter()
     },
     leave: function () {
       unmark(this.view.current());
@@ -139,7 +150,7 @@ const Views = {
       Navigation.push(Views.QuitMoonlightDialog);
     },
     enter: function () {
-      mark(this.view.current());
+      this.view.commonEnter();
     },
     leave: function () {
       unmark(this.view.current());
@@ -163,7 +174,7 @@ const Views = {
     },
     enter: function () {
       this.view.setIndex(1);
-      mark(this.view.current());
+      this.view.commonEnter();
     },
     leave: function () {
       unmark(this.view.current());
@@ -190,7 +201,7 @@ const Views = {
       document.getElementById('cancelAddHost').click();
     },
     enter: function () {
-      mark(this.view.current());
+      this.view.commonEnter();
     },
     leave: function () {
       unmark(this.view.current());
@@ -216,7 +227,7 @@ const Views = {
       document.getElementById('cancelDeleteHost').click();
     },
     enter: function () {
-      mark(this.view.current());
+      this.view.commonEnter();
     },
     leave: function () {
       unmark(this.view.current());
@@ -244,7 +255,7 @@ const Views = {
       document.getElementById('selectResolution').click();
     },
     enter: function () {
-      mark(this.view.current());
+      this.view.commonEnter();
     },
     leave: function () {
       unmark(this.view.current());
@@ -272,7 +283,7 @@ const Views = {
       document.getElementById('selectFramerate').click();
     },
     enter: function () {
-      mark(this.view.current());
+      this.view.commonEnter();
     },
     leave: function () {
       unmark(this.view.current());
@@ -306,7 +317,7 @@ const Views = {
       document.getElementById('cancelPairingDialog').click();
     },
     enter: function () {
-      mark(this.view.current());
+      this.view.commonEnter();
     },
     leave: function () {
       unmark(this.view.current());
@@ -326,10 +337,8 @@ const Views = {
         })
       }, function () { });
     },
-    enter: function () {
-    },
-    leave: function () {
-    }
+    enter: function () { },
+    leave: function () { }
   },
   Apps: {
     view: new ListView(() => document.getElementById('game-grid').children),
@@ -349,7 +358,7 @@ const Views = {
       document.getElementById('backIcon').click();
     },
     enter: function () {
-      mark(this.view.current());
+      this.view.commonEnter();
     },
     leave: function () {
       unmark(this.view.current());
@@ -375,7 +384,7 @@ const Views = {
       document.getElementById('backIcon').click();
     },
     enter: function () {
-      mark(this.view.current());
+      this.view.commonEnter();
     },
     leave: function () {
       unmark(this.view.current());
@@ -402,7 +411,7 @@ const Views = {
     },
     enter: function () {
       this.view.setIndex(1);
-      mark(this.view.current());
+      this.view.commonEnter();
     },
     leave: function () {
       unmark(this.view.current());

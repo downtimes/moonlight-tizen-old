@@ -115,10 +115,6 @@ button.hovered {
     transform: scale(1.1);
 }
 
-button:hover, button:focus, button:active {
-    transform: scale(1.1);
-}
-
 .mdl-grid {
     width: 100%;
 }
