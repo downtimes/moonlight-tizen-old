@@ -40,11 +40,11 @@ function unmark(value) {
 
 function isPopupActive(id) {
   return document
-      .getElementById(id)
-      .parentNode
-      .children[1]
-      .classList
-      .contains('is-visible');
+    .getElementById(id)
+    .parentNode
+    .children[1]
+    .classList
+    .contains('is-visible');
 }
 class ListView {
   constructor(func) {
@@ -53,7 +53,7 @@ class ListView {
   }
 
   prev() {
-    if (this.index > 0 ) {
+    if (this.index > 0) {
       const array = this.func();
       unmark(array[this.index]);
       --this.index;
@@ -78,16 +78,16 @@ class ListView {
 const Views = {
   Hosts: {
     view: new ListView(() => document.getElementById('host-grid').children),
-    up: function() {
+    up: function () {
       Navigation.change(Views.HostsNav);
     },
-    left: function() {
+    left: function () {
       this.view.prev();
     },
-    right: function() {
+    right: function () {
       this.view.next();
     },
-    accept: function() {
+    accept: function () {
       const element = this.view.current();
       if (element.id === 'addHostCell') {
         element.click();
@@ -100,10 +100,10 @@ const Views = {
       modal.showModal();
       Navigation.push(Views.QuitMoonlightDialog);
     },
-    enter: function() {
+    enter: function () {
       mark(this.view.current());
     },
-    leave: function() {
+    leave: function () {
       unmark(this.view.current());
     },
   },
@@ -114,27 +114,27 @@ const Views = {
       'bitrateField',
       'externalAudioBtn',
       'optimizeGamesBtn']),
-    left: function() {
+    left: function () {
       this.view.prev();
     },
-    right: function() {
+    right: function () {
       this.view.next();
     },
-    down: function() {
+    down: function () {
       Navigation.change(Views.Hosts);
     },
-    accept: function() {
+    accept: function () {
       document.getElementById(this.view.current()).click();
     },
-    back: function() {
+    back: function () {
       var modal = document.querySelector('#quitMoonlight');
       modal.showModal();
       Navigation.push(Views.QuitMoonlightDialog);
     },
-    enter: function() {
+    enter: function () {
       mark(this.view.current());
     },
-    leave: function() {
+    leave: function () {
       unmark(this.view.current());
     },
   },
@@ -142,22 +142,22 @@ const Views = {
     view: new ListView(() => [
       'continueQuitMoonlight',
       'cancelQuitMoonlight']),
-    left: function() {
+    left: function () {
       this.view.prev();
     },
-    right: function() {
+    right: function () {
       this.view.next();
     },
-    accept: function() {
+    accept: function () {
       document.getElementById(this.view.current()).click();
     },
-    back: function() {
+    back: function () {
       document.getElementById('cancelQuitMoonlight').click();
     },
-    enter: function() {
+    enter: function () {
       mark(this.view.current());
     },
-    leave: function() {
+    leave: function () {
       unmark(this.view.current());
     },
   },
@@ -166,25 +166,25 @@ const Views = {
       'dialogInputHost',
       'continueAddHost',
       'cancelAddHost']),
-    left: function() {
+    left: function () {
       this.view.prev();
     },
-    right: function() {
+    right: function () {
       this.view.next();
     },
-    down: function() {
-        document.getElementById('continueAddHost').click();
+    down: function () {
+      document.getElementById('continueAddHost').click();
     },
-    accept: function() {
+    accept: function () {
       document.getElementById(this.view.current()).click();
     },
-    back: function() {
+    back: function () {
       document.getElementById('cancelAddHost').click();
     },
-    enter: function() {
+    enter: function () {
       mark(this.view.current());
     },
-    leave: function() {
+    leave: function () {
       unmark(this.view.current());
     },
   },
@@ -192,139 +192,158 @@ const Views = {
     view: new ListView(() => [
       'continueDeleteHost',
       'cancelDeleteHost']),
-    left: function() {
+    left: function () {
       this.view.prev();
     },
-    right: function() {
+    right: function () {
       this.view.next();
     },
-    down: function() {
-        document.getElementById('continueDeleteHost').click();
+    down: function () {
+      document.getElementById('continueDeleteHost').click();
     },
-    accept: function() {
+    accept: function () {
       document.getElementById(this.view.current()).click();
     },
-    back: function() {
+    back: function () {
       document.getElementById('cancelDeleteHost').click();
     },
-    enter: function() {
+    enter: function () {
       mark(this.view.current());
     },
-    leave: function() {
+    leave: function () {
       unmark(this.view.current());
     },
   },
   SelectResolutionMenu: {
     isActive: () => isPopupActive('resolutionMenu'),
     view: new ListView(
-        () => document
-            .getElementById('resolutionMenu')
-            .parentNode
-            .children[1]
-            .children[1]
-            .children),
-    up: function() {
+      () => document
+        .getElementById('resolutionMenu')
+        .parentNode
+        .children[1]
+        .children[1]
+        .children),
+    up: function () {
       this.view.prev();
     },
-    down: function() {
+    down: function () {
       this.view.next();
     },
-    accept: function() {
+    accept: function () {
       this.view.current().click();
     },
-    back: function() {
+    back: function () {
       document.getElementById('selectResolution').click();
     },
-    enter: function() {
+    enter: function () {
       mark(this.view.current());
     },
-    leave: function() {
+    leave: function () {
       unmark(this.view.current());
     },
   },
   SelectFramerateMenu: {
     isActive: () => isPopupActive('framerateMenu'),
     view: new ListView(
-        () => document
-            .getElementById('framerateMenu')
-            .parentNode
-            .children[1]
-            .children[1]
-            .children),
-    up: function() {
+      () => document
+        .getElementById('framerateMenu')
+        .parentNode
+        .children[1]
+        .children[1]
+        .children),
+    up: function () {
       this.view.prev();
     },
-    down: function() {
+    down: function () {
       this.view.next();
     },
-    accept: function() {
+    accept: function () {
       this.view.current().click();
     },
-    back: function() {
+    back: function () {
       document.getElementById('selectFramerate').click();
     },
-    enter: function() {
+    enter: function () {
       mark(this.view.current());
     },
-    leave: function() {
+    leave: function () {
       unmark(this.view.current());
     },
   },
   SelectBitrateMenu: {
     isActive: () => isPopupActive('bandwidthMenu'),
-    left: function() {
+    left: function () {
       bitrateSlider.stepDown();
       bitrateSlider.dispatchEvent(new Event('input'));
     },
-    right: function() {
+    right: function () {
       bitrateSlider.stepUp();
       bitrateSlider.dispatchEvent(new Event('input'));
     },
-    accept: function() {
+    accept: function () {
       document.getElementById('bandwidthMenu').click();
     },
-    back: function() {
+    back: function () {
       document.getElementById('bandwidthMenu').click();
     },
-    enter: function() {},
-    leave: function() {},
+    enter: function () { },
+    leave: function () { },
   },
   PairingDialog: {
     view: new ListView(() => ['cancelPairingDialog']),
-    accept: function() {
+    accept: function () {
       document.getElementById(this.view.current()).click();
     },
-    back: function() {
+    back: function () {
       document.getElementById('cancelPairingDialog').click();
     },
-    enter: function() {
+    enter: function () {
       mark(this.view.current());
     },
-    leave: function() {
+    leave: function () {
       unmark(this.view.current());
+    }
+  },
+  Play: {
+    view: ['nacl_module'],
+    back: function () {
+      sendMessage('stopRequest', []).then(function () {
+        Navigation.pop();
+        api.refreshServerInfo().then(function (ret) {
+          // Return to app list with new currentgame
+          showApps(api);
+        }, function () {
+          // Return to app list anyway
+          showApps(api);
+        })
+      }, function () { });
+    },
+    enter: function () {
+    },
+    leave: function () {
     }
   },
   Apps: {
     view: new ListView(() => document.getElementById('game-grid').children),
-    up: function() {
+    up: function () {
       Navigation.change(Views.AppsNav);
     },
-    left: function() {
+    left: function () {
       this.view.prev();
     },
-    right: function() {
+    right: function () {
       this.view.next();
     },
-    accept: function() {
+    accept: function () {
       this.view.current().click();
     },
-    back: function() {
+    back: function () {
       document.getElementById('backIcon').click();
     },
-    enter: function() {
+    enter: function () {
       mark(this.view.current());
     },
-    leave: function() {
+    leave: function () {
       unmark(this.view.current());
     },
   },
@@ -332,25 +351,25 @@ const Views = {
     view: new ListView(() => [
       'backIcon',
       'quitCurrentApp']),
-    down: function() {
+    down: function () {
       Navigation.change(Views.Apps);
     },
-    left: function() {
+    left: function () {
       this.view.prev();
     },
-    right: function() {
+    right: function () {
       this.view.next();
     },
-    accept: function() {
+    accept: function () {
       document.getElementById(this.view.current()).click();
     },
-    back: function() {
+    back: function () {
       document.getElementById('backIcon').click();
     },
-    enter: function() {
+    enter: function () {
       mark(this.view.current());
     },
-    leave: function() {
+    leave: function () {
       unmark(this.view.current());
     },
   },
@@ -358,31 +377,31 @@ const Views = {
     view: new ListView(() => [
       'continueQuitApp',
       'cancelQuitApp']),
-    down: function() {
+    down: function () {
       Navigation.change(Views.Apps);
     },
-    left: function() {
+    left: function () {
       this.view.prev();
     },
-    right: function() {
+    right: function () {
       this.view.next();
     },
-    accept: function() {
+    accept: function () {
       document.getElementById(this.view.current()).click();
     },
-    back: function() {
+    back: function () {
       document.getElementById('cancelQuitApp').click();
     },
-    enter: function() {
+    enter: function () {
       mark(this.view.current());
     },
-    leave: function() {
+    leave: function () {
       unmark(this.view.current());
     },
   },
 };
 
-const Navigation = (function() {
+const Navigation = (function () {
   let hasFocus = false;
 
   function loseFocus() {
@@ -415,7 +434,7 @@ const Navigation = (function() {
     };
   }
 
-  const Stack = (function() {
+  const Stack = (function () {
     const viewStack = [];
 
     function push(view) {
@@ -444,10 +463,10 @@ const Navigation = (function() {
       return viewStack[viewStack.length - 1];
     }
 
-    return {get, push, change, pop};
+    return { get, push, change, pop };
   })();
 
-  const State = (function() {
+  const State = (function () {
     let running = false;
 
     function start() {
@@ -468,7 +487,7 @@ const Navigation = (function() {
       return running;
     }
 
-    return {start, stop, isRunning};
+    return { start, stop, isRunning };
   })();
 
   return {

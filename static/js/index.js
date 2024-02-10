@@ -792,7 +792,8 @@ function playGameMode() {
   }
   fullscreenNaclModule();
   $('#loadingSpinner').css('display', 'inline-block');
-  Navigation.stop();
+  //Navigation.stop();
+  Navigation.push(Views.Play);
 }
 
 // Maximize the size of the nacl module by scaling and resizing appropriately

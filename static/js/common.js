@@ -2,15 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-function logOut(...args) {
-  common.logMessage(args.join(" "));
-}
-
-//console.log = logOut;
-//console.info = logOut;
-console.warn = logOut;
-console.error = logOut;
-
 // Javascript module pattern:
 //   see http://en.wikipedia.org/wiki/Unobtrusive_JavaScript#Namespaces
 // In essence, we define an anonymous function which is immediately called and

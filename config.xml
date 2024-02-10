@@ -7,7 +7,7 @@
     <feature name="http://tizen.org/feature/screen.size.all"/>
     <name>MoonlightTizenOld</name>
     <description>Attempted Moonlight port for old Samsung tvs</description>
-    <tizen:application id="LKHNeeyxfp.MoonlightTizenOld" package="LKHNeeyxfp" required_version="3.0"/>
+    <tizen:application id="LKHNeeyxfp.MoonlightTizenOld" package="LKHNeeyxfp" required_version="2.3"/>
     <content src="index.html"/>
     <icon src="icons/icon128.png"/>
     <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>

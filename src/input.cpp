@@ -283,7 +283,7 @@ bool MoonlightInstance::HandleInputEvent(const pp::InputEvent& event) {
             
             ClLogMessage("Key code: %u", keyCode);
             // Handle quit event by samsung remote
-            if (keyCode == 428 || keyCode == 427) {
+            if (keyCode == 428 || keyCode == 427 || keyCode == 10009) {
                StopConnection();
                return true; 
             }
