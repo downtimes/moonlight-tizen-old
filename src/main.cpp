@@ -140,7 +140,7 @@ void* MoonlightInstance::ConnectionThreadFunc(void* context) {
   err = LiStartConnection(&serverInfo, &me->m_StreamConfig,
                           &MoonlightInstance::s_ClCallbacks,
                           &MoonlightInstance::s_DrCallbacks,
-                          &MoonlightInstance::s_ArCallbacks, NULL, DR_FLAG_FORCE_SW_DECODE, NULL, 0);
+                          &MoonlightInstance::s_ArCallbacks, NULL, 0, NULL, 0);
   if (err != 0) {
     // Notify the JS code that the stream has ended
     // NB: We pass error code 0 here to avoid triggering a "Connection

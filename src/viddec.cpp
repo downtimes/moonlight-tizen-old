@@ -282,7 +282,10 @@ int MoonlightInstance::VidDecSubmitDecodeUnit(PDECODE_UNIT decodeUnit) {
     uint32_t packedMillis = ProfilerGetPackedMillis();
     int32_t err;
     if ((err = g_Instance->m_VideoDecoder->Decode(packedMillis, offset, s_DecodeBuffer, pp::BlockUntilComplete())) != PP_OK) {
-        ClLogMessage("Decoder had problem: %d", err);
+        char buffer[200];
+        snprintf(buffer, sizeof(buffer), "Decoder can't process images. Error: %d. Please try a lower resolution", err);
+        ClDisplayTransientMessage(buffer);
+        g_Instance->StopConnection();
     }
     ProfilerPrintPackedDeltaFromNow("Decode (blocking)", packedMillis);
     
