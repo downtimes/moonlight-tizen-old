@@ -133,7 +133,6 @@ bool MoonlightInstance::InitializeRenderingSurface(int width, int height) {
                  GL_STATIC_DRAW);
     assertNoGLError();
     
-    g_Instance->m_Graphics3D.SwapBuffers(pp::BlockUntilComplete());
     return true;
 }
 
@@ -259,6 +258,9 @@ int MoonlightInstance::VidDecSubmitDecodeUnit(PDECODE_UNIT decodeUnit) {
         free(s_DecodeBuffer);
         s_DecodeBufferLength = totalLength;
         s_DecodeBuffer = (unsigned char *)malloc(s_DecodeBufferLength);
+        if (s_DecodeBuffer == NULL) {
+            ClLogMessage("Error adjusting decode buffer");
+        }
     }
     
     entry = decodeUnit->bufferList;
@@ -278,7 +280,10 @@ int MoonlightInstance::VidDecSubmitDecodeUnit(PDECODE_UNIT decodeUnit) {
     
     // Start the decoding
     uint32_t packedMillis = ProfilerGetPackedMillis();
-    g_Instance->m_VideoDecoder->Decode(packedMillis, offset, s_DecodeBuffer, pp::BlockUntilComplete());
+    int32_t err;
+    if ((err = g_Instance->m_VideoDecoder->Decode(packedMillis, offset, s_DecodeBuffer, pp::BlockUntilComplete())) != PP_OK) {
+        ClLogMessage("Decoder had problem: %d", err);
+    }
     ProfilerPrintPackedDeltaFromNow("Decode (blocking)", packedMillis);
     
     return DR_OK;

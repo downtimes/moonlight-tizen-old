@@ -19,6 +19,12 @@ function attachListeners() {
   $('#addHostCell').on('click', addHost);
   $('#backIcon').on('click', showHostsAndSettingsMode);
   $('#quitCurrentApp').on('click', stopGameWithConfirmation);
+  $('#continueQuitMoonlight').on('click', quitMoonlight);
+  $('#cancelQuitMoonlight').on('click', function() {
+    var modal = document.querySelector('#quitMoonlight');
+    modal.close();
+    Navigation.pop();
+  });
 
   const registerMenu = (elementId, view) => {
     $(`#${elementId}`).on('click', () => {
@@ -807,6 +813,10 @@ function fullscreenNaclModule() {
   module.style.paddingTop = ((screenHeight - module.height) / 2) + "px";
   module.focus();
   module.dispatchEvent(new Event('mousedown'));
+}
+
+function quitMoonlight() {
+  tizen.application.getCurrentApplication().exit(); 
 }
 
 function stopGameWithConfirmation() {

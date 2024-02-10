@@ -271,6 +271,7 @@ bool MoonlightInstance::HandleInputEvent(const pp::InputEvent& event) {
             return true;
         }
         
+        case PP_INPUTEVENT_TYPE_RAWKEYDOWN:
         case PP_INPUTEVENT_TYPE_KEYDOWN: {
             if (!m_MouseLocked) {
                 return false;
@@ -279,6 +280,13 @@ bool MoonlightInstance::HandleInputEvent(const pp::InputEvent& event) {
             pp::KeyboardInputEvent keyboardEvent(event);
             char modifiers = GetModifierFlags(event);
             uint32_t keyCode = GetTranslatedKeyCode(keyboardEvent);
+            
+            ClLogMessage("Key code: %u", keyCode);
+            // Handle quit event by samsung remote
+            if (keyCode == 428 || keyCode == 427) {
+               StopConnection();
+               return true; 
+            }
             
             if (modifiers == (MODIFIER_ALT | MODIFIER_CTRL | MODIFIER_SHIFT)) {
                 if (keyCode == 0x51) { // Q key
