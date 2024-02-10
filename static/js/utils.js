@@ -1,15 +1,15 @@
 function runningOnChrome() {
   try {
-      if (chrome) {
-          return true;
-      }
-  } catch (e) {}
+    if (chrome) {
+      return true;
+    }
+  } catch (e) { }
 
   return false;
 }
 
 function guuid() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     var r = Math.random() * 16 | 0,
       v = c == 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
@@ -17,7 +17,7 @@ function guuid() {
 }
 
 function uniqueid() {
-  return 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function(c) {
+  return 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function (c) {
     var r = Math.random() * 16 | 0;
     return r.toString(16);
   });
@@ -26,7 +26,7 @@ function uniqueid() {
 function generateRemoteInputKey() {
   var array = new Uint8Array(16);
   window.crypto.getRandomValues(array);
-  return Array.from(array, function(byte) {
+  return Array.from(array, function (byte) {
     return ('0' + (byte & 0xFF).toString(16)).slice(-2);
   }).join('');
 }
@@ -82,7 +82,7 @@ function getConnectedGamepadMask() {
   return mask;
 }
 
-String.prototype.toHex = function() {
+String.prototype.toHex = function () {
   var hex = '';
   for (var i = 0; i < this.length; i++) {
     hex += '' + this.charCodeAt(i).toString(16);
@@ -137,27 +137,27 @@ function _base64ToArrayBuffer(base64) {
 }
 
 NvHTTP.prototype = {
-  refreshServerInfo: function() {
+  refreshServerInfo: function () {
     if (this.ppkstr == null) {
-      return sendMessage('openUrl', [this._baseUrlHttp + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function(retHttp) {
+      return sendMessage('openUrl', [this._baseUrlHttp + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function (retHttp) {
         this._parseServerInfo(retHttp);
       }.bind(this));
     }
 
     // try HTTPS first
-    return sendMessage('openUrl', [this._baseUrlHttps + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function(ret) {
+    return sendMessage('openUrl', [this._baseUrlHttps + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function (ret) {
       if (!this._parseServerInfo(ret)) { // if that fails
         // try HTTP as a failover.  Useful to clients who aren't paired yet
-        return sendMessage('openUrl', [this._baseUrlHttp + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function(retHttp) {
+        return sendMessage('openUrl', [this._baseUrlHttp + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function (retHttp) {
           this._parseServerInfo(retHttp);
         }.bind(this));
       }
     }.bind(this),
-      function(error) {
+      function (error) {
         if (error == -100) { // GS_CERT_MISMATCH
           // Retry over HTTP
           console.warn('%c[utils.js, utils.js, refreshServerInfo]', 'color: gray;', 'Certificate mismatch. Retrying over HTTP', this);
-          return sendMessage('openUrl', [this._baseUrlHttp + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function(retHttp) {
+          return sendMessage('openUrl', [this._baseUrlHttp + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function (retHttp) {
             this._parseServerInfo(retHttp);
           }.bind(this));
         }
@@ -165,29 +165,29 @@ NvHTTP.prototype = {
   },
 
   // refreshes the server info using a given address.  This is useful for testing whether we can successfully ping a host at a given address
-  refreshServerInfoAtAddress: function(givenAddress) {
+  refreshServerInfoAtAddress: function (givenAddress) {
     if (this.ppkstr == null) {
       // Use HTTP if we have no pinned cert
-      return sendMessage('openUrl', ['http://' + givenAddress + ':47989' + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function(retHttp) {
-          return this._parseServerInfo(retHttp);
+      return sendMessage('openUrl', ['http://' + givenAddress + ':47989' + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function (retHttp) {
+        return this._parseServerInfo(retHttp);
       }.bind(this));
     }
 
     // try HTTPS first
-    return sendMessage('openUrl', ['https://' + givenAddress + ':47984' + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function(ret) {
+    return sendMessage('openUrl', ['https://' + givenAddress + ':47984' + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function (ret) {
       if (!this._parseServerInfo(ret)) { // if that fails
         console.log('%c[utils.js, utils.js, refreshServerInfoAtAddress]', 'color: gray;', 'Failed to parse serverinfo from HTTPS, falling back to HTTP');
         // try HTTP as a failover.  Useful to clients who aren't paired yet
-        return sendMessage('openUrl', ['http://' + givenAddress + ':47989' + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function(retHttp) {
+        return sendMessage('openUrl', ['http://' + givenAddress + ':47989' + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function (retHttp) {
           return this._parseServerInfo(retHttp);
         }.bind(this));
       }
     }.bind(this),
-      function(error) {
+      function (error) {
         if (error == -100) { // GS_CERT_MISMATCH
           // Retry over HTTP
           console.warn('%c[utils.js, utils.js, refreshServerInfoAtAddress]', 'color: gray;', 'Certificate mismatch. Retrying over HTTP', this);
-          return sendMessage('openUrl', ['http://' + givenAddress + ':47989' + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function(retHttp) {
+          return sendMessage('openUrl', ['http://' + givenAddress + ':47989' + '/serverinfo?' + this._buildUidStr(), this.ppkstr, false]).then(function (retHttp) {
             return this._parseServerInfo(retHttp);
           }.bind(this));
         }
@@ -195,7 +195,7 @@ NvHTTP.prototype = {
   },
 
   // called every few seconds to poll the server for updated info
-  pollServer: function(onComplete) {
+  pollServer: function (onComplete) {
     // Pend this callback on completion
     this._pollCompletionCallbacks.push(onComplete);
 
@@ -206,7 +206,7 @@ NvHTTP.prototype = {
       return;
     }
 
-    this.selectServerAddress(function(successfulAddress) {
+    this.selectServerAddress(function (successfulAddress) {
       // Successfully determined server address. Update base URL.
       this.address = successfulAddress;
       this._baseUrlHttps = 'https://' + successfulAddress + ':47984';
@@ -227,7 +227,7 @@ NvHTTP.prototype = {
       while ((completion = this._pollCompletionCallbacks.pop())) {
         completion(this);
       }
-    }.bind(this), function() {
+    }.bind(this), function () {
       if (++this._consecutivePollFailures >= 2) {
         this.online = false;
       }
@@ -241,20 +241,20 @@ NvHTTP.prototype = {
   },
 
   // initially pings the server to try and figure out if it's routable by any means.
-  selectServerAddress: function(onSuccess, onFailure) {
+  selectServerAddress: function (onSuccess, onFailure) {
     // TODO: Deduplicate the addresses
-    this.refreshServerInfoAtAddress(this.address).then(function(successPrevAddr) {
+    this.refreshServerInfoAtAddress(this.address).then(function (successPrevAddr) {
       onSuccess(this.address);
-    }.bind(this), function(successPrevAddr) {
-      this.refreshServerInfoAtAddress(this.hostname + '.local').then(function(successLocal) {
+    }.bind(this), function (successPrevAddr) {
+      this.refreshServerInfoAtAddress(this.hostname + '.local').then(function (successLocal) {
         onSuccess(this.hostname + '.local');
-      }.bind(this), function(failureLocal) {
-        this.refreshServerInfoAtAddress(this.externalIP).then(function(successExternal) {
+      }.bind(this), function (failureLocal) {
+        this.refreshServerInfoAtAddress(this.externalIP).then(function (successExternal) {
           onSuccess(this.externalIP);
-        }.bind(this), function(failureExternal) {
-          this.refreshServerInfoAtAddress(this.userEnteredAddress).then(function(successUserEntered) {
+        }.bind(this), function (failureExternal) {
+          this.refreshServerInfoAtAddress(this.userEnteredAddress).then(function (successUserEntered) {
             onSuccess(this.userEnteredAddress);
-          }.bind(this), function(failureUserEntered) {
+          }.bind(this), function (failureUserEntered) {
             console.warn('%c[utils.js, utils.js,  selectServerAddress]', 'color: gray;', 'Failed to contact host ' + this.hostname, this);
             onFailure();
           }.bind(this));
@@ -263,7 +263,7 @@ NvHTTP.prototype = {
     }.bind(this));
   },
 
-  toString: function() {
+  toString: function () {
     var string = '';
     string += 'server address: ' + this.address + '\r\n';
     string += 'server UID: ' + this.serverUid + '\r\n';
@@ -281,7 +281,7 @@ NvHTTP.prototype = {
     return string;
   },
 
-  _parseServerInfo: function(xmlStr) {
+  _parseServerInfo: function (xmlStr) {
     $xml = this._parseXML(xmlStr);
     $root = $xml.find('root');
 
@@ -315,7 +315,7 @@ NvHTTP.prototype = {
       this.gputype = $root.find('gputype').text().trim();
       this.numofapps = $root.find('numofapps').text().trim();
       // now for the hard part: parsing the supported streaming
-      $root.find('DisplayMode').each(function(index, value) { // for each resolution:FPS object
+      $root.find('DisplayMode').each(function (index, value) { // for each resolution:FPS object
         var yres = parseInt($(value).find('Height').text());
         var xres = parseInt($(value).find('Width').text());
         var fps = parseInt($(value).find('RefreshRate').text());
@@ -341,11 +341,11 @@ NvHTTP.prototype = {
     return true;
   },
 
-  getAppById: function(appId) {
-    return this.getAppList().then(function(list) {
+  getAppById: function (appId) {
+    return this.getAppList().then(function (list) {
       var retApp = null;
 
-      list.some(function(app) {
+      list.some(function (app) {
         if (app.id == appId) {
           retApp = app;
           return true;
@@ -358,11 +358,11 @@ NvHTTP.prototype = {
     });
   },
 
-  getAppByName: function(appName) {
-    return this.getAppList().then(function(list) {
+  getAppByName: function (appName) {
+    return this.getAppList().then(function (list) {
       var retApp = null;
 
-      list.some(function(app) {
+      list.some(function (app) {
         if (app.title == appName) {
           retApp = app;
           return true;
@@ -375,8 +375,8 @@ NvHTTP.prototype = {
     });
   },
 
-  getAppListWithCacheFlush: function() {
-    return sendMessage('openUrl', [this._baseUrlHttps + '/applist?' + this._buildUidStr(), this.ppkstr, false]).then(function(ret) {
+  getAppListWithCacheFlush: function () {
+    return sendMessage('openUrl', [this._baseUrlHttps + '/applist?' + this._buildUidStr(), this.ppkstr, false]).then(function (ret) {
       $xml = this._parseXML(ret);
       $root = $xml.find("root");
 
@@ -403,9 +403,9 @@ NvHTTP.prototype = {
     }.bind(this));
   },
 
-  getAppList: function() {
+  getAppList: function () {
     if (this._memCachedApplist) {
-      return new Promise(function(resolve, reject) {
+      return new Promise(function (resolve, reject) {
         console.log('%c[utils.js, utils.js]', 'color: gray;', 'Returning memory-cached apps list');
         resolve(this._memCachedApplist);
         return;
@@ -417,11 +417,11 @@ NvHTTP.prototype = {
 
   // returns the box art of the given appID.
   // three layers of response time are possible: memory cached (in javascript), storage cached (in chrome.storage.local), and streamed (host sends binary over the network)
-  getBoxArt: function(appId) {
+  getBoxArt: function (appId) {
     if (runningOnChrome()) {
       // This may be bad practice to push/pull this much data through local storage?
-      return new Promise(function(resolve, reject) {
-        chrome.storage.local.get('boxart-' + appId, function(storageData) {
+      return new Promise(function (resolve, reject) {
+        chrome.storage.local.get('boxart-' + appId, function (storageData) {
           // if we already have it, load it.
           if (storageData !== undefined && Object.keys(storageData).length !== 0 && storageData['boxart-' + appId].constructor !== Object) {
             console.log('%c[utils.js, getBoxArt]', 'color: gray;', 'Returning storage-cached box art for app: ', appId);
@@ -437,19 +437,19 @@ NvHTTP.prototype = {
             '&AssetType=2&AssetIdx=0',
             this.ppkstr,
             true
-          ]).then(function(boxArtBuffer) {
+          ]).then(function (boxArtBuffer) {
             var reader = new FileReader();
-            reader.onloadend = function() {
+            reader.onloadend = function () {
               var obj = {};
               obj['boxart-' + appId] = this.result;
-              chrome.storage.local.set(obj, function(onSuccess) {});
+              chrome.storage.local.set(obj, function (onSuccess) { });
               console.log('%c[utils.js, utils.js,  getBoxArt]', 'color: gray;', 'Returning network-fetched box art');
               resolve(this.result);
             }
             reader.readAsDataURL(new Blob([boxArtBuffer], {
               type: "image/png"
             }));
-          }.bind(this), function(error) {
+          }.bind(this), function (error) {
             console.error('%c[utils.js, utils.js,  getBoxArt]', 'color: gray;', 'Box-art request failed!', error);
             reject(error);
             return;
@@ -458,37 +458,44 @@ NvHTTP.prototype = {
       }.bind(this));
 
     } else { // shouldn't run because we always have chrome.storage, but I'm not going to antagonize other browsers
-      //TODO: save the boxart in storage like the other settings.
-      console.warn('%c[utils.js, utils.js,  getBoxArt]', 'color: gray;', 'chrome.storage not detected! Box art will not be saved!');
-      return new Promise((resolve, reject) => {
-        sendMessage('openUrl', [
-          this._baseUrlHttps +
-          '/appasset?' + this._buildUidStr() +
-          '&appid=' + appId +
-          '&AssetType=2&AssetIdx=0',
-          this.ppkstr,
-          true
-        ]).then((boxArtBuffer) => {
-          var reader = new FileReader();
-          reader.onloadend = function() {
-            var obj = {};
-            obj['boxart-' + appId] = this.result;
-            console.log('%c[utils.js, utils.js,  getBoxArt]', 'color: gray;', 'Returning network-fetched box art');
-            resolve(this.result);
+      return new Promise(function (resolve, reject) {
+        getData('boxart-' + appId, function (previousValue) {
+          // if we already have it, load it.
+          if (previousValue['boxart-' + appId] != null) {
+            console.log('%c[utils.js, getBoxArt]', 'color: gray;', 'Returning storage-cached box art for app: ', appId);
+            resolve(previousValue['boxart-' + appId]);
+            return;
           }
-          reader.readAsDataURL(new Blob([boxArtBuffer], {
-            type: "image/png"
-          }));
-        }, (error) => {
-          console.error('%c[utils.js, utils.js,  getBoxArt]', 'color: gray;', 'Box-art request failed!', error);
-          reject(error);
-          return;
-        });
-      });
+
+          // otherwise, put it in our cache, then return it
+          sendMessage('openUrl', [
+            this._baseUrlHttps +
+            '/appasset?' + this._buildUidStr() +
+            '&appid=' + appId +
+            '&AssetType=2&AssetIdx=0',
+            this.ppkstr,
+            true
+          ]).then(function (boxArtBuffer) {
+            var reader = new FileReader();
+            reader.onloadend = function () {
+              storeData('boxart-' + appId, this.result, null);
+              console.log('%c[utils.js, utils.js,  getBoxArt]', 'color: gray;', 'Returning network-fetched box art');
+              resolve(this.result);
+            }
+            reader.readAsDataURL(new Blob([boxArtBuffer], {
+              type: "image/png"
+            }));
+          }.bind(this), function (error) {
+            console.error('%c[utils.js, utils.js,  getBoxArt]', 'color: gray;', 'Box-art request failed!', error);
+            reject(error);
+            return;
+          }).bind(this);
+        }.bind(this));
+      }.bind(this));
     }
   },
 
-  launchApp: function(appId, mode, sops, rikey, rikeyid, localAudio, surroundAudioInfo, gamepadMask) {
+  launchApp: function (appId, mode, sops, rikey, rikeyid, localAudio, surroundAudioInfo, gamepadMask) {
     return sendMessage('openUrl', [
       this._baseUrlHttps +
       '/launch?' + this._buildUidStr() +
@@ -506,7 +513,7 @@ NvHTTP.prototype = {
     ]);
   },
 
-  resumeApp: function(rikey, rikeyid, surroundAudioInfo) {
+  resumeApp: function (rikey, rikeyid, surroundAudioInfo) {
     return sendMessage('openUrl', [
       this._baseUrlHttps +
       '/resume?' + this._buildUidStr() +
@@ -518,17 +525,17 @@ NvHTTP.prototype = {
     ]);
   },
 
-  quitApp: function() {
-    return sendMessage('openUrl', [this._baseUrlHttps + '/cancel?' + this._buildUidStr(), this.ppkstr,  false])
+  quitApp: function () {
+    return sendMessage('openUrl', [this._baseUrlHttps + '/cancel?' + this._buildUidStr(), this.ppkstr, false])
       // Refresh server info after quitting because it may silently fail if the
       // session belongs to a different client.
       // TODO: We should probably bubble this up to our caller.
       .then(this.refreshServerInfo());
   },
 
-  updateExternalAddressIP4: function() {
+  updateExternalAddressIP4: function () {
     console.log('%c[utils.js, updateExternalAddressIP4]', 'color: gray;', 'Finding external IPv4 address for ' + this.hostname);
-    return sendMessage('STUN', []).then(function(addr) {
+    return sendMessage('STUN', []).then(function (addr) {
       if (addr) {
         this.externalIP = addr
         console.log('%c[utils.js, updateExternalAddressIP4]', 'color: gray;', 'Found external IPv4 address: ' + this.hostname + ' -> ' + this.externalIP);
@@ -538,14 +545,14 @@ NvHTTP.prototype = {
     }.bind(this))
   },
 
-  pair: function(randomNumber) {
-    return this.refreshServerInfo().then(function() {
+  pair: function (randomNumber) {
+    return this.refreshServerInfo().then(function () {
       if (this.paired && this.ppkstr)
         return true;
 
-      return sendMessage('pair', [this.serverMajorVersion.toString(), this.address, randomNumber]).then(function(ppkstr) {
+      return sendMessage('pair', [this.serverMajorVersion.toString(), this.address, randomNumber]).then(function (ppkstr) {
         this.ppkstr = ppkstr;
-        return sendMessage('openUrl', [this._baseUrlHttps + '/pair?uniqueid=' + this.clientUid + '&devicename=roth&updateState=1&phrase=pairchallenge', this.ppkstr, false]).then(function(ret) {
+        return sendMessage('openUrl', [this._baseUrlHttps + '/pair?uniqueid=' + this.clientUid + '&devicename=roth&updateState=1&phrase=pairchallenge', this.ppkstr, false]).then(function (ret) {
           $xml = this._parseXML(ret);
           this.paired = $xml.find('paired').html() == "1";
           return this.paired;
@@ -554,11 +561,11 @@ NvHTTP.prototype = {
     }.bind(this));
   },
 
-  _buildUidStr: function() {
+  _buildUidStr: function () {
     return 'uniqueid=' + this.clientUid + '&uuid=' + guuid();
   },
 
-  _parseXML: function(xmlData) {
+  _parseXML: function (xmlData) {
     return $($.parseXML(xmlData.toString()));
   },
 };

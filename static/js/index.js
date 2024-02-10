@@ -553,9 +553,6 @@ function showApps(host) {
         gameCard.addEventListener('click', e => {
           startGame(host, app.id)
         })
-        gameCard.addEventListener('mouseover', e => {
-          gameCard.focus();
-        });
         gameCard.addEventListener('keydown', e => {
           if (e.key == "Enter") {
             startGame(host, app.id);

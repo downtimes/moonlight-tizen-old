@@ -2,5 +2,5 @@
 * Build docker file like https://github.com/KyroFrCode/moonlight-chrome-tizen-docker for easy installation
 * Check if the Gamepad functionality works and get Rumble to work as well
 * Investigate why resolutions > 1080p fail the decoder stage
-* Save boxart in storage like other settings
+* Check why the audio controls don't work
 * Get rid of Debug output
