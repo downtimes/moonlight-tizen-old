@@ -95,6 +95,11 @@ const Views = {
         element.children[0].click();
       }
     },
+    back: function () {
+      var modal = document.querySelector('#quitMoonlight');
+      modal.showModal();
+      Navigation.push(Views.QuitMoonlightDialog);
+    },
     enter: function() {
       mark(this.view.current());
     },
@@ -120,6 +125,34 @@ const Views = {
     },
     accept: function() {
       document.getElementById(this.view.current()).click();
+    },
+    back: function() {
+      var modal = document.querySelector('#quitMoonlight');
+      modal.showModal();
+      Navigation.push(Views.QuitMoonlightDialog);
+    },
+    enter: function() {
+      mark(this.view.current());
+    },
+    leave: function() {
+      unmark(this.view.current());
+    },
+  },
+  QuitMoonlightDialog: {
+    view: new ListView(() => [
+      'continueQuitMoonlight',
+      'cancelQuitMoonlight']),
+    left: function() {
+      this.view.prev();
+    },
+    right: function() {
+      this.view.next();
+    },
+    accept: function() {
+      document.getElementById(this.view.current()).click();
+    },
+    back: function() {
+      document.getElementById('cancelQuitMoonlight').click();
     },
     enter: function() {
       mark(this.view.current());
@@ -322,7 +355,6 @@ const Views = {
     },
   },
   CloseAppDialog: {
-    isActive: () => isDialogActive('quitAppDialog'),
     view: new ListView(() => [
       'continueQuitApp',
       'cancelQuitApp']),
