@@ -20,7 +20,7 @@ function attachListeners() {
   $('#backIcon').on('click', showHostsAndSettingsMode);
   $('#quitCurrentApp').on('click', stopGameWithConfirmation);
   $('#continueQuitMoonlight').on('click', quitMoonlight);
-  $('#cancelQuitMoonlight').on('click', function() {
+  $('#cancelQuitMoonlight').on('click', function () {
     var modal = document.querySelector('#quitMoonlight');
     modal.close();
     Navigation.pop();
@@ -462,6 +462,14 @@ function stylizeBoxArt(freshApi, appIdToStylize) {
   // If the running game is the good one then style it
   var el = document.querySelector("#game-" + appIdToStylize);
   if (freshApi.currentGame === appIdToStylize) {
+    var active_play = $("<div>", {
+      class: "current-active",
+      id: "current-active",
+      role: "button",
+      tabindex: 0,
+      'aria-label': 'Current active'
+    });
+    $(el).append(active_play);
     el.classList.add('current-game')
     el.title += ' (Running)'
   } else {
@@ -542,8 +550,6 @@ function showApps(host) {
         gameCard.tabIndex = 0
         gameCard.title = app.title
 
-        gameCard.innerHTML = `<div class="game-title">${app.title}</div>`
-
         gameCard.addEventListener('click', e => {
           startGame(host, app.id)
         })
@@ -570,6 +576,7 @@ function showApps(host) {
         document.querySelector('#game-grid').appendChild(gameCard);
         // apply CSS stylization to indicate whether the app is active
         stylizeBoxArt(host, app.id);
+        gameCard.innerHTML = `<div class="game-title">${gameCard.title}</div>`
       }
       var img = new Image();
       host.getBoxArt(app.id).then(function (resolvedPromise) {
@@ -817,35 +824,41 @@ function fullscreenNaclModule() {
 }
 
 function quitMoonlight() {
-  tizen.application.getCurrentApplication().exit(); 
+  tizen.application.getCurrentApplication().exit();
 }
 
 function stopGameWithConfirmation() {
   if (api.currentGame === 0) {
     snackbarLog('Nothing was running');
   } else {
-    api.getAppById(api.currentGame).then(function (currentGame) {
-      var quitAppDialog = document.querySelector('#quitAppDialog');
-      document.getElementById('quitAppDialogText').innerHTML =
-        ' Are you sure you would like to quit ' +
-        currentGame.title + '?  Unsaved progress will be lost.';
-      quitAppDialog.showModal();
-      Navigation.push(Views.CloseAppDialog);
-      $('#cancelQuitApp').off('click');
-      $('#cancelQuitApp').on('click', function () {
-        console.log('%c[index.js, stopGameWithConfirmation]', 'color:green;', 'Closing app dialog, and returning');
-        quitAppDialog.close();
-        Navigation.pop();
+    api.refreshServerInfo().then(function (ret) {
+      api.getAppById(api.currentGame).then(function (currentGame) {
+        var quitAppDialog = document.querySelector('#quitAppDialog');
+        document.getElementById('quitAppDialogText').innerHTML =
+          ' Are you sure you would like to quit ' +
+          currentGame.title + '?  Unsaved progress will be lost.';
+        quitAppDialog.showModal();
+        Navigation.push(Views.CloseAppDialog);
+        $('#cancelQuitApp').off('click');
+        $('#cancelQuitApp').on('click', function () {
+          common.logMessage("Cancel called");
+          console.log('%c[index.js, stopGameWithConfirmation]', 'color:green;', 'Closing app dialog, and returning');
+          quitAppDialog.close();
+          Navigation.pop();
+        });
+        $('#continueQuitApp').off('click');
+        $('#continueQuitApp').on('click', function () {
+          common.logMessage("Quit App confirmed");
+          console.log('%c[index.js, stopGameWithConfirmation]', 'color:green;', 'Stopping game, and closing app dialog, and returning');
+          stopGame(api);
+          quitAppDialog.close();
+          Navigation.pop();
+        });
+        return;
+      }, function (failedCurrentApp) {
+        return;
       });
-      $('#continueQuitApp').off('click');
-      $('#continueQuitApp').on('click', function () {
-        console.log('%c[index.js, stopGameWithConfirmation]', 'color:green;', 'Stopping game, and closing app dialog, and returning');
-        stopGame(api);
-        quitAppDialog.close();
-        Navigation.pop();
-      });
-
-    });
+    })
   }
 }
 

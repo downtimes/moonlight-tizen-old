@@ -58,7 +58,7 @@ class ListView {
       unmark(array[this.index]);
       --this.index;
       mark(array[this.index]);
-    }
+    } 
   }
 
   next() {
@@ -67,6 +67,13 @@ class ListView {
       unmark(array[this.index]);
       ++this.index;
       mark(array[this.index]);
+    } 
+  }
+  
+  setIndex(index) {
+    const array = this.func();
+    if (index >= 0 && index < array.length - 1) {
+      this.index = index;
     }
   }
 
@@ -155,6 +162,7 @@ const Views = {
       document.getElementById('cancelQuitMoonlight').click();
     },
     enter: function () {
+      this.view.setIndex(1);
       mark(this.view.current());
     },
     leave: function () {
@@ -393,6 +401,7 @@ const Views = {
       document.getElementById('cancelQuitApp').click();
     },
     enter: function () {
+      this.view.setIndex(1);
       mark(this.view.current());
     },
     leave: function () {
@@ -419,6 +428,7 @@ const Navigation = (function () {
   }
   function runOp(name) {
     return () => {
+      common.logMessage("Nav op called: " + name);
       if (!State.isRunning()) {
         return;
       }

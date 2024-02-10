@@ -111,6 +111,10 @@ main {
     color: #fff !important;
 }
 
+button.hovered {
+    transform: scale(1.1);
+}
+
 button:hover, button:focus, button:active {
     transform: scale(1.1);
 }
@@ -361,6 +365,22 @@ button:hover, button:focus, button:active {
 
 .current-game {
     outline: auto #8BC34A;
+}
+
+.current-active {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    z-index: 5;
+    background-image: url('../res/play-button-svgrepo-com.svg');
+    background-repeat: no-repeat;
+    background-size: 120px 120px;
+    background-position: center;
+    border: 0;
+    cursor: pointer;
 }
 
 .host-cell-inactive {
