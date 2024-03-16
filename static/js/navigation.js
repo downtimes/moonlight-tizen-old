@@ -330,10 +330,10 @@ const Views = {
         Navigation.pop();
         api.refreshServerInfo().then(function (ret) {
           // Return to app list with new currentgame
-          showApps(api, false);
+          showApps(api);
         }, function () {
           // Return to app list anyway
-          showApps(api, false);
+          showApps(api);
         })
       }, function () { });
     },
