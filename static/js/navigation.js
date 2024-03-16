@@ -7,6 +7,9 @@ function unmarkElementById(id) {
 function unmarkElement(element) {
   if (element) {
     element.classList.remove(hoveredClassName);
+    if (element.type == 'text') {
+      document.activeElement.blur()
+    }
     element.dispatchEvent(new Event('mouseleave'));
   }
 }
@@ -18,6 +21,9 @@ function markElementById(id) {
 function markElement(element) {
   if (element) {
     element.classList.add(hoveredClassName);
+    if (element.type == 'text') {
+      element.focus()
+    }
     element.dispatchEvent(new Event('mouseenter'));
   }
 }
@@ -182,9 +188,7 @@ const Views = {
   },
   AddHostDialog: {
     view: new ListView(() => [
-      'dialogInputHost',
-      'continueAddHost',
-      'cancelAddHost']),
+      'dialogInputHost']),
     left: function () {
       this.view.prev();
     },
@@ -192,7 +196,7 @@ const Views = {
       this.view.next();
     },
     down: function () {
-      document.getElementById('continueAddHost').click();
+      Navigation.change(Views.AddHostConfirmDeny);
     },
     accept: function () {
       document.getElementById(this.view.current()).click();
@@ -201,6 +205,33 @@ const Views = {
       document.getElementById('cancelAddHost').click();
     },
     enter: function () {
+      this.view.commonEnter();
+    },
+    leave: function () {
+      unmark(this.view.current());
+    },
+  },
+  AddHostConfirmDeny: {
+    view: new ListView(() => [
+      'continueAddHost',
+      'cancelAddHost']),
+    left: function () {
+      this.view.prev();
+    },
+    right: function () {
+      this.view.next();
+    },
+    up: function () {
+      Navigation.change(Views.AddHostDialog);
+    },
+    accept: function () {
+      document.getElementById(this.view.current()).click();
+    },
+    back: function () {
+      document.getElementById('cancelAddHost').click();
+    },
+    enter: function () {
+      this.view.setIndex(0);
       this.view.commonEnter();
     },
     leave: function () {
@@ -477,7 +508,7 @@ const Navigation = (function () {
         get().enter();
       }
     }
-    
+
     function reenter() {
       if (viewStack.length > 1) {
         get().enter();
