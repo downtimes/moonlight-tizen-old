@@ -468,7 +468,6 @@ const Navigation = (function () {
   }
   function runOp(name) {
     return () => {
-      common.logMessage("Nav op called: " + name);
       if (!State.isRunning()) {
         return;
       }

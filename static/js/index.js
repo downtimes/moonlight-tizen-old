@@ -110,7 +110,7 @@ function onBoundsChanged() {
 
 function changeUiModeForNaClLoad() {
   $('#main-navigation').children().hide();
-  $("#main-content").children().not("#listener, #naclSpinner, #statusField, #log").hide();
+  $("#main-content").children().not("#listener, #naclSpinner").hide();
   $('#naclSpinnerMessage').text('Loading Moonlight plugin...');
   $('#naclSpinner').css('display', 'inline-block');
 }
@@ -844,14 +844,12 @@ function stopGameWithConfirmation() {
         Navigation.push(Views.CloseAppDialog);
         $('#cancelQuitApp').off('click');
         $('#cancelQuitApp').on('click', function () {
-          common.logMessage("Cancel called");
           console.log('%c[index.js, stopGameWithConfirmation]', 'color:green;', 'Closing app dialog, and returning');
           quitAppDialog.close();
           Navigation.pop();
         });
         $('#continueQuitApp').off('click');
         $('#continueQuitApp').on('click', function () {
-          common.logMessage("Quit App confirmed");
           console.log('%c[index.js, stopGameWithConfirmation]', 'color:green;', 'Stopping game, and closing app dialog, and returning');
           stopGame(api);
           quitAppDialog.close();

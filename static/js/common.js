@@ -91,7 +91,10 @@ var common = (function () {
     if (logMessageArray.length > kMaxLogMessageLength)
       logMessageArray.shift();
 
-    document.getElementById('log').textContent = logMessageArray.join('\n');
+    var logArea = document.getElementById('log');
+    if (logArea !== null) {
+      logArea.textContent = logMessageArray.join('\n');
+    }
   }
 
   /**
